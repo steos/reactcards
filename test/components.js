@@ -3,15 +3,22 @@ import {Foo, Bar} from '../src/components'
 
 import test from 'tape'
 
-console.log('hello from the component test file')
+//console.log('hello from the component test file')
 
-test('A sample test', assert => {
-  console.log('a sample test is running')
-  assert.pass('success!')
-  assert.end()
-})
+export default function run() {
+  console.log('running component tests')
+  test('A sample test', assert => {
+    console.log('a sample test is running')
+    assert.pass('success!')
+    assert.end()
+  })
 
-test('A failing test', assert => {
-  assert.equals('foo!', 'bar!')
-  assert.end()
-})
+  test('A failing test', assert => {
+    assert.equals('foo!', 'bar!')
+    assert.end()
+  })
+}
+
+if (typeof window !== 'object') {
+  run()
+}

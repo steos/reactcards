@@ -31,14 +31,14 @@ class TapeTestCard extends Component {
   componentDidMount() {
     //TODO
     console.log('tape card mounted', this.props)
-    this.runTests(this.props.file)
+    this.runTests(this.props.run)
   }
   componentWillReceiveProps(nextProps) {
     //TODO
     console.log('tape card receiving props')
-    this.runTests(nextProps.file)
+    this.runTests(nextProps.run)
   }
-  runTests(requireTestFile) {
+  runTests(run) {
     const results = []
     console.log('setting up tape stream')
     const stream = test.createStream({objectMode: true})
@@ -47,8 +47,8 @@ class TapeTestCard extends Component {
       console.log('tape stream end, setting state', results)
       this.setState({results})
     })
-    console.log('requiring testfile')
-    requireTestFile()
+    console.log('running tests')
+    run()
   }
   render() {
     return (
@@ -74,9 +74,9 @@ export default function() {
     list() {
       return cards
     },
-    tape(file, title = '') {
+    tape(run, title = '') {
       //TODO
-      cards.push(<TapeTestCard key={nextId++} file={file} title={title}/>)
+      cards.push(<TapeTestCard key={nextId++} run={run} title={title}/>)
     }
   }
 }
