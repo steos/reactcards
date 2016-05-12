@@ -14,7 +14,7 @@ export class Foo extends Component {
     console.log('Foo updated')
   }
   render() {
-    return <div>a foo is here...</div>
+    return <div>Foo says "{this.props.message}".</div>
   }
 }
 

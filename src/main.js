@@ -3,12 +3,26 @@ import {render} from 'react-dom'
 import devcards from './cards'
 import {CardList} from './devcards/core'
 import {AppContainer} from 'react-hot-loader'
+import {test} from 'tape'
 
 const renderCards = () =>
   render(<AppContainer component={CardList} props={{children: devcards.list()}}/>, window.mountNode)
 
-renderCards()
+const runTests = () => {
+  console.log('running tests')
+  test.createStream({objectMode: true}).on('data', row =>
+    console.log('test result',row)
+  )
+  require('../test/components')
+}
+
+const run = () => {
+  runTests()
+  renderCards()
+}
+
+run()
 
 if (module.hot) {
-  module.hot.accept(renderCards)
+  module.hot.accept(run)
 }
