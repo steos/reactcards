@@ -2,6 +2,8 @@ import React, {Component, createFactory} from 'react'
 import {render} from 'react-dom'
 import {test} from 'tape'
 
+// const tapeStream = test.createStream({objectMode: true})
+console.log('tape', test)
 const cardStyle = {
   padding:'20px',
   marginBottom:'10px',
@@ -16,6 +18,7 @@ const cardHeaderStyle = {
   fontWeight:'normal',
   padding:0,
   margin:0,
+  color:'#555',
   marginBottom:'16px',
 }
 const CardHeader = (props) =>
@@ -47,6 +50,8 @@ class TapeTestCard extends Component {
     super(props)
     this.state = {results: []}
   }
+  componentWillUnmount() {
+  }
   componentDidMount() {
     //TODO
     console.log('tape card mounted', this.props)
@@ -55,16 +60,23 @@ class TapeTestCard extends Component {
   componentWillReceiveProps(nextProps) {
     //TODO
     console.log('tape card receiving props')
+    this.setState({results: []})
     this.runTests(nextProps.run)
   }
   runTests(run) {
-    const results = []
-    console.log('setting up tape stream')
-    const stream = test.createStream({objectMode: true})
-    stream.on('data', row => results.push(row))
-    stream.on('end', () => {
-      console.log('tape stream end, setting results', results)
-      this.setState({results})
+    const tapeStream = test.createStream({objectMode: true})
+    // console.log('harness', test.getHarness())
+    // console.log('stream', tapeStream, test)
+    const pushResult = row => {
+      // console.log('pushing test data', row)
+      this.setState({results: [...this.state.results, row]})
+    }
+    tapeStream.on('data', pushResult)
+    tapeStream.once('end', () => {
+      console.log('cleanup')
+      tapeStream.removeListener('data', pushResult)
+      tapeStream.destroy()
+      test.getHarness()._results.removeAllListeners()
     })
     console.log('running tests')
     run()

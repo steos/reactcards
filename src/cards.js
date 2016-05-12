@@ -12,6 +12,8 @@ dc.card(<Foo message="hello world"/>, 'another foo card')
 
 dc.card(<Bar/>, 'bar card')
 
-dc.tape(testComponents, 'component tests')
+dc.tape(testComponents, 'component tests 1')
+
+dc.tape(testComponents, 'component tests 2')
 
 export default dc
