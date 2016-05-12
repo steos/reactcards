@@ -14,7 +14,7 @@ export default function run() {
   })
 
   test('A failing test', assert => {
-    assert.equals('foo!', 'bar!')
+    assert.equals('bar!', 'foo!')
     assert.end()
   })
 }

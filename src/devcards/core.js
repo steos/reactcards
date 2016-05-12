@@ -44,17 +44,28 @@ class TapeTestCard extends Component {
     const stream = test.createStream({objectMode: true})
     stream.on('data', row => results.push(row))
     stream.on('end', () => {
-      console.log('tape stream end, setting state', results)
+      console.log('tape stream end, setting results', results)
       this.setState({results})
     })
     console.log('running tests')
     run()
   }
+  renderResultItem(item, key) {
+    if (item.type === 'test') {
+      return <h4>{item.name}</h4>
+    }
+    if (item.ok === true) {
+      return <div key={key} style={{color:'green'}}>{item.name}</div>
+    } else {
+      return <div key={key} style={{color:'red'}}>{item.name}: {item.actual} {item.expected}</div>
+    }
+  }
   render() {
+    const results = this.state.results.filter(item => item.type !== 'end')
     return (
       <div>
       <strong>{this.props.title}</strong>
-      <pre>{JSON.stringify(this.state.results, null, ' ')}</pre>
+      {results.map(this.renderResultItem.bind(this))}
       </div>
     )
   }
