@@ -6,9 +6,9 @@ import testComponents from '../test/components'
 
 const dc = devcards()
 
-dc.card(<Foo message="hello there"/>, 'foo card')
+dc.card(<Foo message="hello"/>, 'foo card')
 
-dc.card(<Foo message="hello world"/>, 'foo card')
+dc.card(<Foo message="hello world"/>, 'another foo card')
 
 dc.card(<Bar/>, 'bar card')
 

@@ -20,5 +20,6 @@ export default function run() {
 }
 
 if (typeof window !== 'object') {
+  // TODO there's probably a better way
   run()
 }

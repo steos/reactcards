@@ -24,5 +24,9 @@ const run = () => {
 run()
 
 if (module.hot) {
-  module.hot.accept(run)
+  module.hot.accept(() => {
+    // TODO give some visual indication that update happened
+    // besides the output in the console, like figwheel
+    run()
+  })
 }

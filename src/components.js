@@ -14,11 +14,11 @@ export class Foo extends Component {
     console.log('Foo updated')
   }
   render() {
-    return <div>Foo says '{this.props.message}'</div>
+    return <div>Foo says '{this.props.message}'!</div>
   }
 }
 
 export const Bar = (props) => {
   console.log('bar rendering', props)
-  return (<div>a bar. drink up.</div>)
+  return (<div>a bar. drink up!</div>)
 }
