@@ -8,16 +8,16 @@ import {test} from 'tape'
 const renderCards = () =>
   render(<AppContainer component={CardList} props={{children: devcards.list()}}/>, window.mountNode)
 
-const runTests = () => {
-  console.log('running tests')
-  test.createStream({objectMode: true}).on('data', row =>
-    console.log('test result',row)
-  )
-  require('../test/components')
-}
+// const runTests = () => {
+//   console.log('running tests')
+//   test.createStream({objectMode: true}).on('data', row =>
+//     console.log('test result',row)
+//   )
+//   require('../test/components')
+// }
 
 const run = () => {
-  runTests()
+  // runTests()
   renderCards()
 }
 

@@ -1,6 +1,7 @@
 import React, {Component, createFactory} from 'react'
 import {render} from 'react-dom'
-
+import {test} from 'tape'
+import path from 'path'
 export class CardList extends Component {
   render() {
     return (
@@ -22,18 +23,60 @@ class Card extends Component {
   }
 }
 
+class TapeTestCard extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {results: []}
+  }
+  componentDidMount() {
+    //TODO
+    console.log('tape card mounted', this.props)
+    this.runTests(this.props.file)
+  }
+  componentWillReceiveProps(nextProps) {
+    //TODO
+    console.log('tape card receiving props')
+    this.runTests(nextProps.file)
+  }
+  runTests(requireTestFile) {
+    const results = []
+    console.log('setting up tape stream')
+    const stream = test.createStream({objectMode: true})
+    stream.on('data', row => results.push(row))
+    stream.on('end', () => {
+      console.log('tape stream end, setting state', results)
+      this.setState({results})
+    })
+    console.log('requiring testfile')
+    requireTestFile()
+  }
+  render() {
+    return (
+      <div>
+      <strong>{this.props.title}</strong>
+      <pre>{JSON.stringify(this.state.results, null, ' ')}</pre>
+      </div>
+    )
+  }
+}
+
 const makeCardList = createFactory(CardList)
 
 const makeCard = createFactory(Card)
 
 export default function() {
   const cards = []
+  let nextId = 1
   return {
     card(content, title = '') {
-      cards.push({title, content})
+      cards.push(makeCard({title, content, key: nextId++}))
     },
     list() {
-      return cards.map((card, key) => makeCard({...card, key}))
+      return cards
+    },
+    tape(file, title = '') {
+      //TODO
+      cards.push(<TapeTestCard key={nextId++} file={file} title={title}/>)
     }
   }
 }
