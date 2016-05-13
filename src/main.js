@@ -12,9 +12,7 @@ const run = renderCards
 run()
 
 if (module.hot) {
-  module.hot.accept(() => {
-    // TODO give some visual indication that update happened
-    // besides the output in the console, like figwheel
-    run()
-  })
+  module.hot.accept()
+  window.notify.style.opacity=100
+  setTimeout(() => window.notify.style.opacity=0, 500)
 }

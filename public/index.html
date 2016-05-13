@@ -5,11 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>devcards.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    body {
+      transition: background-color 1s;
+      background-color:white;
+    }
+    #notify {
+      border:4px solid white;
+      background-color:black;
+      padding:1em;
+      position:fixed;
+      left:10px;
+      bottom:10px;
+      color:white;
+      font-family:sans-serif;
+      transition: opacity .5s;
+      opacity:0;
+    }
+    </style>
 </head>
 <body>
 
 <div id="mountNode">
 </div>
+
+<div id="notify">Hot Update</div>
 
 <script src="app.js"></script>
 </body>

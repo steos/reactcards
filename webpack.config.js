@@ -1,6 +1,6 @@
 var path = require('path')
 module.exports = {
-    devtool: 'source-map',
+    //devtool: 'source-map',
     context: path.join(__dirname, "src"),
     entry: [
       'webpack/hot/only-dev-server',

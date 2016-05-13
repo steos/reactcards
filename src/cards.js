@@ -12,9 +12,9 @@ dc.card(<Foo message="hello world"/>, 'another foo card')
 
 dc.card(<Bar/>, 'bar card')
 
-// dc.tape(testComponents, 'component tests 1')
-
-// dc.tape(testComponents, 'component tests 2')
+// // dc.tape(testComponents, 'component tests 1')
+//
+// // dc.tape(testComponents, 'component tests 2')
 
 dc.markdown(`
 ## a markdown card
@@ -23,7 +23,8 @@ this is a simple markdown card
 - ipsum
 `)
 
-dc.test(testSimple, 'simple tests')
+// dc.test(testSimple, 'simple tests')
+//
 
 dc.test(testComponents, 'component tests')
 
