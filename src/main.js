@@ -1,25 +1,18 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import devcards from './cards'
-import {CardList} from './devcards/core'
+import {CardList} from './devcards/components'
 import {AppContainer} from 'react-hot-loader'
-import {test} from 'tape'
 
 const renderCards = () =>
-  render(<AppContainer component={CardList} props={{children: devcards.list()}}/>, window.mountNode)
+  render(
+    <AppContainer
+      component={CardList}
+      props={{children: devcards.list()}}/>,
+    window.mountNode
+  )
 
-// const runTests = () => {
-//   console.log('running tests')
-//   test.createStream({objectMode: true}).on('data', row =>
-//     console.log('test result',row)
-//   )
-//   require('../test/components')
-// }
-
-const run = () => {
-  // runTests()
-  renderCards()
-}
+const run = renderCards
 
 run()
 

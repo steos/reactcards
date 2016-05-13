@@ -1,25 +1,14 @@
+import React from 'react'
+import {assert} from 'chai'
+import {shallow} from 'enzyme'
 import {Foo, Bar} from '../src/components'
-// TODO import {shallow} from 'enzyme'
 
-import test from 'tape'
-
-//console.log('hello from the component test file')
-
-export default function run() {
-  console.log('running component tests')
-  test('A sample test', assert => {
-    console.log('a sample test is running')
-    assert.pass('success!')
-    assert.end()
-  })
-
-  test('A failing test', assert => {
-    assert.equals('bar!', 'foo!')
-    assert.end()
-  })
+export function testBarComponent() {
+    const wrapper = shallow(<Bar/>)
+    assert.equal(wrapper.text(), 'a bar. drink up!')
 }
 
-if (typeof window !== 'object') {
-  // TODO there's probably a better way
-  run()
+export function testFooComponent() {
+  const wrapper = shallow(<Foo message="testing"/>)
+  assert.equal(wrapper.text(), "Foo says 'testing'")
 }

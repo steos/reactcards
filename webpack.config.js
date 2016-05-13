@@ -24,5 +24,14 @@ module.exports = {
 
     node: {
       fs: "empty"
+    },
+
+    // we need this because of enzyme
+    // see https://github.com/airbnb/enzyme/blob/master/docs/guides/webpack.md
+    externals: {
+      'cheerio': 'window',
+      'react/addons': true,
+      'react/lib/ExecutionEnvironment': true,
+      'react/lib/ReactContext': true
     }
 };
