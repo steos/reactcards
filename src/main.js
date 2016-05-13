@@ -5,12 +5,7 @@ import {CardList} from './devcards/components'
 import {AppContainer} from 'react-hot-loader'
 
 const renderCards = () =>
-  render(
-    <AppContainer
-      component={CardList}
-      props={{children: devcards.list()}}/>,
-    window.mountNode
-  )
+  render(<AppContainer>{devcards.component()}</AppContainer>, window.mountNode)
 
 const run = renderCards
 

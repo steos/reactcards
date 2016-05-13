@@ -1,4 +1,5 @@
 import React from 'react'
+import showdown from 'showdown'
 
 const cardStyle = {
   padding:'20px',
@@ -31,3 +32,11 @@ export const Card = (props) => (
   {props.children}
   </div>
 )
+
+const markdownToHtml = str => {
+  const conv = new showdown.Converter()
+  return conv.makeHtml(str)
+}
+
+export const MarkdownCard = (props) =>
+  <Card><div dangerouslySetInnerHTML={{__html:markdownToHtml(props.children)}}/></Card>

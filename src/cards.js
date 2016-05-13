@@ -16,8 +16,16 @@ dc.card(<Bar/>, 'bar card')
 
 // dc.tape(testComponents, 'component tests 2')
 
+dc.markdown(`
+## a markdown card
+this is a simple markdown card
+- lorem
+- ipsum
+`)
+
 dc.test(testSimple, 'simple tests')
 
 dc.test(testComponents, 'component tests')
+
 
 export default dc
