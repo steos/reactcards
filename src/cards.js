@@ -28,6 +28,18 @@ dc.card(<StatefulCounter value={42}/>, {
   and instead the component local state is shown.`
 })
 
+dc.card(
+  (state) =>
+    <StatelessCounter
+      value={state.get()}
+      inc={() => state.update(x => x + 1)}
+      dec={() => state.update(x => x - 1)}/>,
+{
+  init: 23,
+  doc:
+  `## stateless counter
+  this example shows how to manage state`
+})
 
 // // dc.tape(testComponents, 'component tests 1')
 

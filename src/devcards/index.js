@@ -2,13 +2,15 @@ import React from 'react'
 import {Card, CardList, MarkdownCard} from './components'
 import TestCard from './TestCard'
 import TapeTestCard from './TapeTestCard'
+import StatefulCard from './StatefulCard'
 
 export default function() {
   const cards = []
   let nextId = 1
   return {
     card(content, opts = {}) {
-      cards.push(<Card title={opts.title} doc={opts.doc} key={nextId++}>{content}</Card>)
+      const CardImpl = typeof content === 'function' ? StatefulCard : Card
+      cards.push(<CardImpl {...opts} key={nextId++}>{content}</CardImpl>)
     },
     list() {
       return cards

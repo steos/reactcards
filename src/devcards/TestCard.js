@@ -10,7 +10,7 @@ const hStyle = {
   marginBottom:'12px',
 }
 
-const TestHeaderOk = props =>
+const TestSuccess = props =>
   <h4 style={{...hStyle, color:'green'}}>✔ {props.children}</h4>
 
 const TestFailure = props => (
@@ -53,7 +53,7 @@ export default class TestCard extends Component {
       <Card title={this.props.title}>
       {this.state.results.map(([result, name], index) => (
         result === true
-          ? <TestHeaderOk key={index}>{name}</TestHeaderOk>
+          ? <TestSuccess key={index}>{name}</TestSuccess>
           : <TestFailure key={index} error={result}>{name}</TestFailure>
         )
       )}
