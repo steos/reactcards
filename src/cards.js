@@ -22,10 +22,14 @@ dc.card(<Bar/>, {title: 'a bar card'})
 
 dc.card(<StatefulCounter value={42}/>, {
   doc:
-  `## counter
-  this is a stateful counter. if you change the value prop it
-  will appear to not update because the new prop will be ignored
-  and instead the component local state is shown.`
+  `## Counter
+
+  This is a stateful counter. If you change the value prop
+  in the source file it will not update because the new prop will be ignored
+  and instead the component local state is rendered.
+
+  Implement *componentWillReceiveProps* and override the component local state
+  if you want this to work as expected.`
 })
 
 dc.card(
@@ -38,8 +42,10 @@ dc.card(
   init: 23,
   inspect: true,
   doc:
-  `## stateless counter
-  this example shows how to manage state`
+  `## Stateless Counter
+  This example shows how to manage state when you have a stateless
+  component. The card can also dump the current state as JSON if
+  you set the *inspect* flag to true.`
 })
 
 dc.card(
@@ -52,8 +58,8 @@ dc.card(
   init: 1337,
   history:true,
   doc:
-  `## stateless counter
-  same example as before but with undo/redo controls added by the card`
+  `## Undo/Redo
+  Same example as before but with undo/redo controls added by the card.`
 })
 
 
