@@ -1,7 +1,7 @@
 
 import React from 'react'
 import devcards from './devcards'
-import {Foo, Bar} from './components'
+import {Foo, Bar, StatefulCounter, StatelessCounter} from './components'
 import * as testSimple from '../test/simple'
 import * as testComponents from '../test/components'
 const dc = devcards()
@@ -19,6 +19,15 @@ dc.card(
 dc.card(<Foo message="hello world"/>)
 
 dc.card(<Bar/>, {title: 'a bar card'})
+
+dc.card(<StatefulCounter value={42}/>, {
+  doc:
+  `## counter
+  this is a stateful counter. if you change the value prop it
+  will appear to not update because the new prop will be ignored
+  and instead the component local state is shown.`
+})
+
 
 // // dc.tape(testComponents, 'component tests 1')
 
