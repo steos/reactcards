@@ -73,7 +73,7 @@ export const TodoList = props => (
     <TodoForm onSubmit={props.onSubmit}/>
     <ul>
       {props.items.map((item, index) =>
-        <li onClick={props.onToggleItem.bind(null, index)}>
+        <li key={index} onClick={props.onToggleItem.bind(null, index)}>
         <span style={{textDecoration: item.done ? 'line-through' : 'none'}}>{item.text}</span>
         </li>
       )}
