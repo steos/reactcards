@@ -45,3 +45,38 @@ export class StatefulCounter extends Component {
     )
   }
 }
+
+class TodoForm extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {text: ''}
+  }
+  submit() {
+    this.props.onSubmit(this.state.text.trim())
+    this.setState({text: ''})
+  }
+  render() {
+    return (
+      <div>
+        <input type="text"
+          value={this.state.text}
+          onChange={e => this.setState({text: e.target.value})}/>
+        <button onClick={this.submit.bind(this)}
+          disabled={this.state.text.trim().length < 1}>Save</button>
+      </div>
+    )
+  }
+}
+
+export const TodoList = props => (
+  <div>
+    <TodoForm onSubmit={props.onSubmit}/>
+    <ul>
+      {props.items.map((item, index) =>
+        <li onClick={props.onToggleItem.bind(null, index)}>
+        <span style={{textDecoration: item.done ? 'line-through' : 'none'}}>{item.text}</span>
+        </li>
+      )}
+    </ul>
+  </div>
+)

@@ -1,7 +1,7 @@
 
 import React from 'react'
 import devcards from './devcards'
-import {Foo, Bar, StatefulCounter, StatelessCounter} from './components'
+import {Foo, Bar, StatefulCounter, StatelessCounter, TodoList} from './components'
 import * as testSimple from '../test/simple'
 import * as testComponents from '../test/components'
 const dc = devcards()
@@ -62,6 +62,24 @@ dc.card(
   Same example as before but with undo/redo controls added by the card.`
 })
 
+dc.card(
+  (state) =>
+    <TodoList items={state.get()}
+      onSubmit={(text) => state.update(items => [...items, {text, done: false}])}
+      onToggleItem={(index) => state.update(items => [
+        ...items.slice(0, index),
+        {...items[index], done: !items[index].done},
+        ...items.slice(index + 1)
+      ])}/>,
+{
+  init: [],
+  history: true,
+  inspect: true,
+  doc:
+  `## TodoList
+  A simple todo list showing history and inspect feature
+  with a little more interesting model than just a simple number.`
+})
 
 // // dc.tape(testComponents, 'component tests 1')
 

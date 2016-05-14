@@ -67,6 +67,7 @@ export default class StatefulCard extends Component {
       fontFamily:'monospace',
       backgroundColor:'#efefef',
       padding:'.5em',
+      display:'inline-block',
     }
     const boxStyle = {
       marginTop:'1em',
@@ -75,7 +76,7 @@ export default class StatefulCard extends Component {
     return (
       <div style={boxStyle}>
       <p style={{fontSize:'.7em',color:'#777'}}>model:</p>
-      <span style={jsonStyle}>{JSON.stringify(this.getModel(), null, '  ')}</span>
+      <pre style={jsonStyle}>{JSON.stringify(this.getModel(), null, ' ')}</pre>
       </div>
     )
   }
