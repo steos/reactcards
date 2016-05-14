@@ -6,14 +6,14 @@ import * as testSimple from '../test/simple'
 import * as testComponents from '../test/components'
 const dc = devcards()
 
-dc.card(<Foo message="hello"/>, 'foo card')
+dc.card(<Foo message="hello"/>)
 
-dc.card(<Foo message="hello world"/>, 'another foo card')
+dc.card(<Foo message="hello world"/>)
 
 dc.card(<Bar/>, 'bar card')
 
 // // dc.tape(testComponents, 'component tests 1')
-//
+
 // // dc.tape(testComponents, 'component tests 2')
 
 dc.markdown(`
@@ -24,7 +24,6 @@ this is a simple markdown card
 `)
 
 // dc.test(testSimple, 'simple tests')
-//
 
 dc.test(testComponents, 'component tests')
 
