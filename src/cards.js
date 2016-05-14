@@ -4,6 +4,7 @@ import devcards from './devcards'
 import {Foo, Bar, StatefulCounter, StatelessCounter, TodoList} from './components'
 import * as testSimple from '../test/simple'
 import * as testComponents from '../test/components'
+import * as advancedTestComponents from '../test/advanced'
 const dc = devcards()
 
 dc.card(
@@ -95,6 +96,8 @@ this is a simple markdown card
 dc.test(testSimple, 'simple tests')
 
 dc.test(testComponents, 'component tests')
+
+dc.test(advancedTestComponents, 'advanced component tests')
 
 
 export default dc
