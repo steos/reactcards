@@ -36,10 +36,26 @@ dc.card(
       dec={() => state.update(x => x - 1)}/>,
 {
   init: 23,
+  inspect: true,
   doc:
   `## stateless counter
   this example shows how to manage state`
 })
+
+dc.card(
+  (state) =>
+    <StatelessCounter
+      value={state.get()}
+      inc={() => state.update(x => x + 1)}
+      dec={() => state.update(x => x - 1)}/>,
+{
+  init: 1337,
+  history:true,
+  doc:
+  `## stateless counter
+  same example as before but with undo/redo controls added by the card`
+})
+
 
 // // dc.tape(testComponents, 'component tests 1')
 
