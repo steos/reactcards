@@ -19,6 +19,21 @@ const cardHeaderStyle = {
   marginBottom:'16px',
 }
 
+const docStyle = {
+  // padding:'1em',
+  color:'#777',
+  marginBottom:'1em',
+  borderBottom:'1px solid #efefef',
+}
+
+const markdownToHtml = str => {
+  const conv = new showdown.Converter()
+  return conv.makeHtml(str)
+}
+
+const Markdown = props =>
+  <div style={props.style} dangerouslySetInnerHTML={{__html:markdownToHtml(props.children)}}/>
+
 const CardHeader = (props) =>
   <h1 style={cardHeaderStyle}>{props.children}</h1>
 
@@ -29,14 +44,10 @@ export const CardList = (props) => (
 export const Card = (props) => (
   <div style={cardStyle}>
   {props.title ? <CardHeader>{props.title}</CardHeader> : null}
+  {props.doc ? <Markdown style={docStyle}>{props.doc}</Markdown> : null}
   {props.children}
   </div>
 )
 
-const markdownToHtml = str => {
-  const conv = new showdown.Converter()
-  return conv.makeHtml(str)
-}
-
 export const MarkdownCard = (props) =>
-  <Card><div dangerouslySetInnerHTML={{__html:markdownToHtml(props.children)}}/></Card>
+  <Card><Markdown>{props.children}</Markdown></Card>

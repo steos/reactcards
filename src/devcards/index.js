@@ -7,8 +7,8 @@ export default function() {
   const cards = []
   let nextId = 1
   return {
-    card(content, title = '') {
-      cards.push(<Card title={title} key={nextId++}>{content}</Card>)
+    card(content, opts = {}) {
+      cards.push(<Card title={opts.title} doc={opts.doc} key={nextId++}>{content}</Card>)
     },
     list() {
       return cards
