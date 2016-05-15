@@ -9,7 +9,9 @@ const markdownToHtml = str => {
 }
 
 const Markdown = props =>
-  <div style={props.style} dangerouslySetInnerHTML={{__html:markdownToHtml(props.children)}}/>
+  <div style={props.style}
+    className="reactcards-markdown"
+    dangerouslySetInnerHTML={{__html:markdownToHtml(props.children)}}/>
 
 const CardHeader = (props) =>
   <h1 style={cardHeaderStyle}>{props.children}</h1>
