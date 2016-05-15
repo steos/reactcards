@@ -8,7 +8,7 @@ if (module.hot) {
   module.hot.accept()
   window.notify.style.opacity=100
   setTimeout(() => window.notify.style.opacity=0, 500)
-  window.describe = (text, fn) => fn(),
+  window.describe = (text, fn) => fn()
   window.it = (text, fn) => fn()
 }
 
