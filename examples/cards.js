@@ -95,11 +95,14 @@ this is a simple markdown card
 - ipsum
 `)
 
-dc.test(testSimple, 'simple tests')
+dc.test(testSimple, {title:'simple tests'})
 
-dc.test(testComponents, 'component tests')
+dc.test(testComponents, {
+  doc:
+  `## component tests
+  Here you can see the results of some component tests.`
+})
 
-dc.test(advancedTestComponents, 'advanced component tests')
-
+dc.test(advancedTestComponents, { title: 'advanced component tests' })
 
 export default dc

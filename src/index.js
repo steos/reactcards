@@ -51,8 +51,8 @@ export default function(namespace = '[default]') {
     component() {
       return <CardList namespace={namespace}>{cards}</CardList>
     },
-    test(testModule, title = '') {
-      cards.push(<TestCard key={nextId++} testModule={testModule} title={title}/>)
+    test(testModule, opts = {}) {
+      cards.push(<TestCard {...opts} key={nextId++} testModule={testModule}/>)
     },
     markdown(text) {
       cards.push(<MarkdownCard key={nextId++}>{text}</MarkdownCard>)

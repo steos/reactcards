@@ -49,8 +49,9 @@ export default class TestCard extends Component {
     this.setState({results})
   }
   render() {
+    const {title, doc} = this.props
     return (
-      <Card title={this.props.title}>
+      <Card {...{title, doc}}>
       {this.state.results.map(([result, name], index) => (
         result === true
           ? <TestSuccess key={index}>{name}</TestSuccess>
