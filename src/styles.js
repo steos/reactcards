@@ -36,9 +36,15 @@ export const boxStyle = {
 }
 
 export const linkStyle = {
-    color: 'blue',
+    color: '#999',
+    textDecoration: 'underline',
+}
+
+export const linkMenuStyle = {
+    color: '#444',
+    fontSize: '1.1em',
     textDecoration: 'none',
-    listStyle: 'none'
+    listStyle: 'none',
 }
 
 export const menuStyle = {
@@ -47,4 +53,12 @@ export const menuStyle = {
 
 export const menuListStyle = {
     listStyle: 'none',
+}
+
+export const headerStyle = {
+    fontSize: '1.5em',
+    padding: '30px',
+    backgroundColor: '#ddd',
+    marginBottom: '10px',
+    fontWeight:'bold',
 }
