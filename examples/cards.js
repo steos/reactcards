@@ -10,7 +10,7 @@ const dc2 = devcards('ABC')
 dc2.card(<Foo message="yo" />, 'here is  a simple example')
 
 dc.card(
-  <Foo message="hello..."/>, {
+  <Foo message="hello"/>, {
   doc:
   `## markdown doc
   you can use markdown for card documentation
@@ -19,7 +19,7 @@ dc.card(
   `
 })
 
-dc.card(<Foo message="hello world!"/>)
+dc.card(<Foo message="hello world"/>)
 
 dc.card(<Bar/>, {title: 'a bar card'})
 
