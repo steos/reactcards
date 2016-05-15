@@ -1,7 +1,7 @@
 import React from 'react'
 import { assert } from 'chai'
 import { shallow } from 'enzyme'
-import { Foo, Bar } from '../src/components'
+import { Foo, Bar } from '../components'
 
 export function testBarAdvancedComponent() {
     describe('Test <Bar />', () => {

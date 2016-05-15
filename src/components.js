@@ -1,82 +1,33 @@
-import React, {Component} from 'react'
+import React from 'react'
+import showdown from 'showdown'
 
-export class Foo extends Component {
-  componentWillReceiveProps(nextProps) {
-    console.log('Foo receiving props', nextProps, this.props)
-  }
-  componentWillUnmount() {
-    console.log('Foo unmounting')
-  }
-  componentDidMount() {
-    console.log('Foo did mount')
-  }
-  componentDidUpdate() {
-    console.log('Foo updated')
-  }
-  render() {
-    return <div className='foo'>Foo says '{this.props.message}.'</div>
-  }
+import { cardStyle, cardHeaderStyle, docStyle } from './styles'
+
+const markdownToHtml = str => {
+  const conv = new showdown.Converter()
+  return conv.makeHtml(str)
 }
 
-export const Bar = (props) => {
-  console.log('bar rendering', props)
-  return (<div className='bar'>a bar. drink up!</div>)
-}
+const Markdown = props =>
+  <div style={props.style} dangerouslySetInnerHTML={{__html:markdownToHtml(props.children)}}/>
 
-export const StatelessCounter = props => (
+const CardHeader = (props) =>
+  <h1 style={cardHeaderStyle}>{props.children}</h1>
+
+export const CardList = (props) => (
   <div>
-  <button onClick={props.inc}>+</button>
-  <span>{props.value}</span>
-  <button onClick={props.dec}>-</button>
+    <CardHeader>{ props.namespace }</CardHeader>
+    {props.children}
   </div>
 )
 
-export class StatefulCounter extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {value: props.value}
-  }
-  render() {
-    return (
-      <StatelessCounter
-        inc={() => this.setState({value: this.state.value + 1})}
-        dec={() => this.setState({value: this.state.value - 1})}
-        value={this.state.value}/>
-    )
-  }
-}
-
-class TodoForm extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {text: ''}
-  }
-  submit() {
-    this.props.onSubmit(this.state.text.trim())
-    this.setState({text: ''})
-  }
-  render() {
-    return (
-      <div>
-        <input type="text"
-          value={this.state.text}
-          onChange={e => this.setState({text: e.target.value})}/>
-        <button onClick={this.submit.bind(this)}
-          disabled={this.state.text.trim().length < 1}>Save</button>
-      </div>
-    )
-  }
-}
-
-export const TodoList = props => (
-  <div>
-    <TodoForm onSubmit={props.onSubmit}/>
-    <ul>
-      {props.items.map((item, index) =>
-        <li key={index} onClick={props.onToggleItem.bind(null, index)}>
-        <span style={{textDecoration: item.done ? 'line-through' : 'none'}}>{item.text}</span>
-        </li>
-      )}
-    </ul>
+export const Card = (props) => (
+  <div style={cardStyle}>
+  {props.title ? <CardHeader>{props.title}</CardHeader> : null}
+  {props.doc ? <Markdown style={docStyle}>{props.doc}</Markdown> : null}
+  {props.children}
   </div>
 )
+
+export const MarkdownCard = (props) =>
+  <Card><Markdown>{props.children}</Markdown></Card>
