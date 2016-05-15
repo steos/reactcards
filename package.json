@@ -4,7 +4,8 @@
   "description": "Devcards for JavaScript",
   "license": "BSD-3-Clause",
   "scripts": {
-    "start": "webpack-dev-server --content-base ./public/ --host 0.0.0.0 --hot --inline"
+    "start": "webpack-dev-server --content-base ./public/ --host 0.0.0.0 --hot --inline",
+    "example": "webpack-dev-server --config examples/webpack.config.js --content-base ./public/ --host 0.0.0.0 --hot --inline"
   },
   "devDependencies": {
     "babel-core": "^6.6.4",
@@ -19,6 +20,8 @@
   "dependencies": {
     "chai": "^3.5.0",
     "enzyme": "^2.3.0",
+    "history": "^2.1.1",
+    "myro": "^0.6.2",
     "react": "^15.0.2",
     "react-addons-test-utils": "^15.0.2",
     "react-dom": "^15.0.2",
