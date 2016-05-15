@@ -1,10 +1,11 @@
 export const cardStyle = {
-    padding:'20px',
-    marginBottom:'10px',
+    padding:'24px',
+    marginBottom:'20px',
     border:'1px solid #efefef',
-    boxShadow:'1px 1px 4px #efefef',
+    boxShadow:'1px 1px 4px #ccc',
     borderRadius:'2px',
     fontFamily:'sans-serif',
+    backgroundColor:'white',
 }
 
 export const cardHeaderStyle = {
@@ -19,7 +20,7 @@ export const cardHeaderStyle = {
 export const docStyle = {
     // padding:'1em',
     color:'#777',
-    marginBottom:'1em',
+    marginBottom:'24px',
     borderBottom:'1px solid #efefef',
 }
 
@@ -31,7 +32,7 @@ export const jsonStyle = {
 }
 
 export const boxStyle = {
-    marginTop:'1em',
+    marginTop:'24px',
     borderTop:'1px solid #efefef',
 }
 
@@ -43,6 +44,7 @@ export const crumbStyle = {
 export const linkStyle = {
     ...crumbStyle,
     textDecoration: 'underline',
+    color: 'steelblue',
 }
 
 export const linkMenuStyle = {
