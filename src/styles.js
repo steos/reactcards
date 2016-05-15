@@ -40,3 +40,11 @@ export const linkStyle = {
     textDecoration: 'none',
     listStyle: 'none'
 }
+
+export const menuStyle = {
+    padding: '0px',
+}
+
+export const menuListStyle = {
+    listStyle: 'none',
+}

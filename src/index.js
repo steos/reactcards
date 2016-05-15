@@ -15,7 +15,6 @@ const namespaceStore = {
   },
   set(namespace, cards) {
     this.namespaces[namespace] = cards
-    console.log('update', this.namespaces)
     this.notify()
   },
   subscribe(f) {

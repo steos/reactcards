@@ -3,7 +3,7 @@ import myro from 'myro'
 import { find, map } from 'lodash'
 import createHistory from '../node_modules/history/lib/createBrowserHistory'
 import { CardList } from './components'
-import { linkStyle } from './styles'
+import { linkStyle, menuStyle, menuListStyle } from './styles'
 
 let history = createHistory()
 
@@ -11,13 +11,13 @@ export default class Container extends Component {
 
     constructor(props) {
         super(props)
-        this.state = { active : null, routes: this.createRoutes() }
+        this.state = { activeNamespace : null, routes: this.createRoutes() }
         this.unlisten = null
     }
 
     componentWillMount() {
         this.unlisten = history.listen((location) => {
-            this.setState({active: location.hash.replace('#/', '')})
+            this.setState({activeNamespace: location.hash.replace('#/', '')})
         })
     }
 
@@ -37,25 +37,32 @@ export default class Container extends Component {
     }
 
     render() {
-        let active = find(this.props.namespaces, (v, k) => k == this.state.active)
-        console.log(this.props.namespaces, active, this.state.active, '!')
+        const { namespaces } = this.props
+        const { routes, activeNamespace } = this.state
+        let cards = namespaces[activeNamespace]
         return <div>
-            <div>
-                <ul>
-                    <li key='index-link'>
-                        <a style={ linkStyle } href={ this.state.routes.index() }>Index</a>
-                    </li>
-                    {map(this.props.namespaces, (namespace, key) => (
-                        <li key={key}>
-                            <a style={ linkStyle }
-                               href={this.state.routes.namespace({ namespace: key })}>
-                                { key }
-                            </a>
+            {cards
+                ? <div>
+                    <span><a style={ linkStyle } href={ routes.index() }>Index</a></span>
+                    <CardList namespace={ activeNamespace }>{ cards }</CardList>
+                </div>
+                : <div className='menu'>
+                    <ul style={ menuStyle }>
+                        <li key='index-link' style={ menuListStyle } className={ activeNamespace === ''? 'active-link' : '' }>
+                            <a style={ linkStyle } href={ routes.index() }>Index</a>
                         </li>
-                    ))}
-                </ul>
-            </div>
-            {active? <CardList namespace={ this.state.active }>{ active }</CardList> : null }
+                        {map(namespaces, (namespace, key) => (
+                            <li key={key} style={ menuListStyle }>
+                                <a style={ linkStyle }
+                                   className={ activeNamespace === key? 'active-link' : '' }
+                                   href={ routes.namespace({ namespace: key }) }>
+                                    { key }
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            }
         </div>
     }
 }
