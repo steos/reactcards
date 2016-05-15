@@ -3,7 +3,7 @@ import myro from 'myro'
 import { find, map } from 'lodash'
 import createHistory from '../node_modules/history/lib/createBrowserHistory'
 import { Card, CardList } from './components'
-import { headerStyle, linkStyle, linkMenuStyle, menuStyle, menuListStyle } from './styles'
+import { headerStyle, linkStyle, linkMenuStyle, menuStyle, menuListStyle, crumbStyle} from './styles'
 
 let history = createHistory()
 
@@ -44,7 +44,11 @@ export default class Container extends Component {
             <div style={ headerStyle }>React Cards</div>
             {cards
                 ? <div>
-                    <span><a style={ linkStyle } href={ routes.index() }>Index</a></span>
+                    <div style={{...crumbStyle, marginBottom:'1em'}}>
+                      <a style={ linkStyle } href={ routes.index() }>Index</a>
+                      &nbsp;/&nbsp;
+                      {activeNamespace}
+                    </div>
                     <CardList namespace={ activeNamespace }>{ cards }</CardList>
                 </div>
                 : <div className='menu'>

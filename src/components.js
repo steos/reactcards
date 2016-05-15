@@ -16,7 +16,6 @@ const CardHeader = (props) =>
 
 export const CardList = (props) => (
   <div>
-    <CardHeader>{ props.namespace }</CardHeader>
     {props.children}
   </div>
 )

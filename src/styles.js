@@ -35,8 +35,13 @@ export const boxStyle = {
     borderTop:'1px solid #efefef',
 }
 
+export const crumbStyle = {
+  color: '#999',
+  fontFamily: 'sans-serif',
+}
+
 export const linkStyle = {
-    color: '#999',
+    ...crumbStyle,
     textDecoration: 'underline',
 }
 
@@ -57,8 +62,9 @@ export const menuListStyle = {
 
 export const headerStyle = {
     fontSize: '1.5em',
-    padding: '30px',
-    backgroundColor: '#ddd',
-    marginBottom: '10px',
-    fontWeight:'bold',
+    padding: '1em',
+    backgroundColor: '#444',
+    marginBottom: '.5em',
+    fontFamily: 'sans-serif',
+    color: 'white',
 }
