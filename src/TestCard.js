@@ -30,7 +30,7 @@ const TestHeader = props => (
 )
 
 const TestSuccess = props => (
-  <div style={{...testBoxStyle, backgroundColor:'#DCEED3'}}>
+  <div className='react-card-test-successful' style={{...testBoxStyle, backgroundColor:'#DCEED3'}}>
     <TestHeader icon={<CheckIcon color="green" size={iconSize}/>}>
       <span style={{color:'darkgreen'}}>{props.children}</span>
     </TestHeader>
@@ -38,7 +38,7 @@ const TestSuccess = props => (
 )
 
 const TestFailure = props => (
-  <div style={{...testBoxStyle, backgroundColor:'#EEDBDA'}}>
+  <div className='react-card-test-failure' style={{...testBoxStyle, backgroundColor:'#EEDBDA'}}>
     <TestHeader icon={<CloseIcon color="red" size={iconSize}/>}>
       <span style={{color:'darkred'}}>{props.children}</span>
     </TestHeader>
@@ -62,7 +62,6 @@ export default class TestCard extends Component {
     this.runTests(this.props.testModule)
   }
   runTests(testModule) {
-    console.log('running tests', Object.keys(testModule))
     const results = []
     const tests = Object.keys(testModule)
     tests.forEach(name => {
@@ -73,7 +72,6 @@ export default class TestCard extends Component {
         results.push([e, name])
       }
     })
-    console.log(results)
     this.setState({results})
   }
   render() {

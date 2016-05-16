@@ -3,32 +3,13 @@ import {Card, CardList, MarkdownCard} from './components'
 import TestCard from './TestCard'
 import StatefulCard from './StatefulCard'
 import Container from './Container'
+import namespaceStore from './namespaceStore'
 import { hotNotifyStyle } from './styles'
 
-const namespaces = {}
+let store = namespaceStore()
 
-// a simplified example for handling namespaces and their corresponding changes
-const namespaceStore = {
-  namespaces: {},
-  listeners: [],
-  get(namespace) {
-    return namespace? this.namespaces[namespace] : this.namespaces
-  },
-  set(namespace, cards) {
-    this.namespaces[namespace] = cards
-    this.notify()
-  },
-  subscribe(f) {
-    this.listeners.push(f)
-    return () => this.listeners.filter(l => l != f)
-  },
-  notify() {
-    this.listeners.map(l => l(this.namespaces))
-  }
-}
-
-const main = (namespaces) => {
-  return <Container namespaces={ namespaces } />
+const main = (namespaces, history) => {
+  return <Container namespaces={namespaces} history={history} />
 }
 
 class HotNotify extends Component {
@@ -50,20 +31,20 @@ class HotNotify extends Component {
 }
 
 // initialize...
-export const Root = () => (
+export const Root = ({ history }) => (
   <div>
-    { main(namespaceStore.get()) }
+    { main(store.get(), history) }
     <HotNotify/>
   </div>
 )
 
 // subscribe to changes
-var f = namespaceStore.subscribe(main)
+var f = store.subscribe(main)
 
-export default function(namespace = '[default]') {
+export default function(namespace = 'default') {
   const cards = []
   let nextId = 1
-  namespaceStore.set(namespace, cards)
+  store.set(namespace, cards)
   return {
     card(content, opts = {}) {
       const CardImpl = typeof content === 'function' ? StatefulCard : Card
