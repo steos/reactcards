@@ -41,12 +41,27 @@ export const Root = ({ history }) => (
 // subscribe to changes
 var f = store.subscribe(main)
 
+const isStr = x =>
+  Object.prototype.toString.call(x) === '[object String]'
+
+const processArgs = args => {
+  const [fst] = args
+  if (isStr(fst)) {
+    const [, content, opts] = args
+    return [content, {...opts, doc: fst}]
+  } else {
+    const [content, opts = {}] = args
+    return [content, opts]
+  }
+}
+
 export default function(namespace = 'default') {
   const cards = []
   let nextId = 1
   store.set(namespace, cards)
   return {
-    card(content, opts = {}) {
+    card(...args) {
+      const [content, opts] = processArgs(args)
       const CardImpl = typeof content === 'function' ? StatefulCard : Card
       cards.push(<CardImpl {...opts} key={nextId++}>{content}</CardImpl>)
     },
@@ -56,8 +71,9 @@ export default function(namespace = 'default') {
     component() {
       return <CardList namespace={namespace}>{cards}</CardList>
     },
-    test(testModule, opts = {}) {
-      cards.push(<TestCard {...opts} key={nextId++} testModule={testModule}/>)
+    test(...args) {
+      const [content, opts] = processArgs(args)
+      cards.push(<TestCard {...opts} key={nextId++} testModule={content}/>)
     },
     markdown(text) {
       cards.push(<MarkdownCard key={nextId++}>{text}</MarkdownCard>)

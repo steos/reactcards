@@ -14,16 +14,16 @@ With React Cards we can display the component in many different states along wit
 
 ### Getting started
 
-The easiest way to start is to clone this repository and run
+Clone this repository and run
 
-```javascript 
+```javascript
 npm install
-npm start example 
+npm run example
 ```
 
 React Cards will be available at http://localhost:8080
 
-To see React Cards in action, go to the example directory and start experimenting with devcards.js
+To see React Cards in action, go to the example directory and start experimenting.
 
 ### Using React Cards in an existing project
 
@@ -31,7 +31,7 @@ Coming soon.
 
 ## Writing Cards
 
-```javascript 
+```javascript
 import React from 'react'
 import cards from 'reactcards'
 import {Foo, Bar} from './components'
@@ -41,14 +41,12 @@ const demo = cards('demo')
 abc.card(<Foo message="yo" />, 'here is  a simple example')
 
 demo.card(
-  <Foo message="hello"/>, {
-  doc:
   `## markdown doc
   you can use markdown for card documentation
   - foo
-  - bar
-  `
-})
+  - bar`,
+  <Foo message="hello"/>
+)
 
 demo.card(<Foo message="hello world"/>)
 
@@ -60,15 +58,14 @@ demo.card(<Bar/>, {title: 'a bar card'})
 
 #### Creating a stateful component
 
-```javascript 
+```javascript
 import React from 'react'
 import cards from 'reactcards'
 import {StatefulComponent} from './components'
 
 const demo = cards('demo')
 
-demo.card(<StatefulCounter value={42}/>, {
-  doc:
+demo.card(
   `## Counter
 
   This is a stateful counter. If you change the value prop
@@ -76,8 +73,10 @@ demo.card(<StatefulCounter value={42}/>, {
   and instead the component local state is rendered.
 
   Implement *componentWillReceiveProps* and override the component local state
-  if you want this to work as expected.`
-})
+  if you want this to work as expected.`,
+
+  <StatefulCounter value={42}/>
+)
 
 ```
 
@@ -86,7 +85,7 @@ demo.card(<StatefulCounter value={42}/>, {
 #### Creating a stateful component with undo/redo
 
 
-```javascript 
+```javascript
 import React from 'react'
 import cards from 'reactcards'
 import {StatefulComponent} from './components'
@@ -94,18 +93,19 @@ import {StatefulComponent} from './components'
 const demo = cards('demo')
 
 demo.card(
+  `## Undo/Redo
+  Same example as before but with undo/redo controls added by the card.`,
+
   (state) =>
     <StatelessCounter
       value={state.get()}
       inc={() => state.update(x => x + 1)}
       dec={() => state.update(x => x - 1)}/>,
-{
-  init: 1337,
-  history:true,
-  doc:
-  `## Undo/Redo
-  Same example as before but with undo/redo controls added by the card.`
-})
+  {
+    init: 1337,
+    history:true,
+  }
+)
 
 ```
 
@@ -114,9 +114,9 @@ demo.card(
 
 ## Writing Tests
 
-```javascript 
+```javascript
 
-// your test file... 
+// your test file...
 import {assert} from 'chai'
 
 export function testAdd() {
