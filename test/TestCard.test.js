@@ -15,7 +15,7 @@ const testModule = {randomSuccessfulTest};
 describe('Testing <TestCard />', () => {
     it('should display the test name', () => {
         const component = mount(<TestCard  testModule={testModule}/>)
-        expect(component.find('h4').text()).to.contain('randomSuccessfulTest')
+        expect(component.text()).to.contain('randomSuccessfulTest')
     })
 
     it('should display the correct result when test succeeds', () => {
