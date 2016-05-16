@@ -4,7 +4,7 @@ import TestCard from './TestCard'
 import StatefulCard from './StatefulCard'
 import Container from './Container'
 import namespaceStore from './namespaceStore'
-import { hotNotifyStyle } from './styles'
+import style from './style.less'
 
 let store = namespaceStore()
 
@@ -25,7 +25,7 @@ class HotNotify extends Component {
   render() {
     return (
       <div ref={node => this._node = node}
-        style={hotNotifyStyle}>Hot Update</div>
+        className={style.hotNotify}>Hot Update</div>
     )
   }
 }

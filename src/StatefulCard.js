@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Card} from './components'
-import { boxStyle, jsonStyle } from './styles'
 import deepEqual from 'deep-equal'
+import style from './style.less'
 
 export default class StatefulCard extends Component {
   constructor(props) {
@@ -67,9 +67,9 @@ export default class StatefulCard extends Component {
   }
   renderInspect() {
     return (
-      <div className='react-cards-inspect' style={boxStyle}>
+      <div className={'react-cards-inspect '+style.inspectBox}>
       <p style={{fontSize:'.7em',color:'#777'}}>model:</p>
-      <pre style={jsonStyle}>{JSON.stringify(this.getModel(), null, ' ')}</pre>
+      <pre>{JSON.stringify(this.getModel(), null, ' ')}</pre>
       </div>
     )
   }

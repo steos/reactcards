@@ -19,6 +19,14 @@ module.exports = {
                 exclude: /node_modules/,
                 loaders: ['babel?{presets:["es2015", "react", "stage-2"], plugins:["react-hot-loader/babel"]}'],
             },
+            {
+              test: /\.css$/,
+              loader: "style-loader!css-loader"
+            },
+            {
+                test: /\.less$/,
+                loader: "style-loader!css-loader!less-loader"
+            }
         ],
     },
 

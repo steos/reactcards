@@ -1,9 +1,9 @@
 import React, { Component, PropTypes }  from 'react'
 import myro from 'myro'
 import { find, map } from 'lodash'
-import createHistory from '../node_modules/history/lib/createBrowserHistory'
+import createHistory from 'history/lib/createBrowserHistory'
 import { Card, CardList } from './components'
-import { headerStyle, linkStyle, linkMenuStyle, menuStyle, menuListStyle, crumbStyle} from './styles'
+import style from './style.less'
 
 export default class Container extends Component {
 
@@ -40,18 +40,17 @@ export default class Container extends Component {
         const { routes, activeNamespace } = this.state
         const cards = namespaces[activeNamespace]
         const navCard = this.renderNavCard(routes, activeNamespace)
-        return <div>
-            <div style={ headerStyle }>React Cards</div>
+        return <div className={style.container}>
+            <h1>React Cards</h1>
             {cards
                 ? <div className='react-cards-namespace-cards'>
                     <CardList namespace={ activeNamespace }>{ [navCard, ...cards] }</CardList>
                 </div>
-                : <div className='menu'>
+                : <div className="react-cards-menu">
                     <CardList>
                     {map(namespaces, (namespace, key) => (
-                        <Card key={key} style={ menuListStyle }>
-                            <a style={ linkMenuStyle }
-                               href={ routes.namespace({ namespace: key }) }>
+                        <Card key={key}>
+                            <a className={style.nav} href={ routes.namespace({ namespace: key }) }>
                                 { key }
                             </a>
                         </Card>
@@ -63,10 +62,12 @@ export default class Container extends Component {
     }
     renderNavCard(routes, ns) {
       return (
-        <Card key='navcard' style={{...crumbStyle, marginBottom:'1em'}}>
-          <a style={ linkStyle } href={ routes.index() }>home</a>
-          &nbsp;/&nbsp;
-          {ns}
+        <Card key='navcard'>
+          <div className={style.navCrumbs}>
+            <a href={ routes.index() }>home</a>
+            &nbsp;/&nbsp;
+            {ns}
+          </div>
         </Card>
       )
     }

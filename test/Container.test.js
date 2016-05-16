@@ -16,18 +16,18 @@ describe('Testing <Container />', () => {
 
     it('should show menu when no cards', () => {
         const component = shallow(<Container namespaces={[]} history={history} />)
-        expect(component.html()).to.contain('menu')
+        expect(component.html()).to.contain('react-cards-menu')
     })
 
     it('should show menu when no active namespace', () => {
         const component = shallow(<Container namespaces={namespaces} history={history}  />)
-        expect(component.html()).to.contain('menu')
+        expect(component.html()).to.contain('react-cards-menu')
     })
 
     it('should hide menu when active namespace', () => {
         history.push('/#/foo')
         const component = shallow(<Container namespaces={namespaces} history={history} />)
-        expect(component.html()).to.not.contain('menu')
+        expect(component.html()).to.not.contain('react-cards-menu')
     })
 
     it('should display no cards if active namespace doesn\'t contain cards', () => {

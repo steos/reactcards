@@ -1,7 +1,6 @@
 import React from 'react'
 import showdown from 'showdown'
-
-import { cardStyle, cardHeaderStyle, docStyle } from './styles'
+import style from './style.less'
 
 const markdownToHtml = str => {
   const conv = new showdown.Converter()
@@ -9,12 +8,11 @@ const markdownToHtml = str => {
 }
 
 const Markdown = props =>
-  <div style={props.style}
-    className="reactcards-markdown"
+  <div className={[style.markdown,props.className].join(' ')}
     dangerouslySetInnerHTML={{__html:markdownToHtml(props.children)}}/>
 
 const CardHeader = (props) =>
-  <h1 style={cardHeaderStyle}>{props.children}</h1>
+  <h1 className={style.cardHeader}>{props.children}</h1>
 
 export const CardList = (props) => (
   <div style={{padding:'16px'}}>
@@ -23,9 +21,9 @@ export const CardList = (props) => (
 )
 
 export const Card = (props) => (
-  <div style={cardStyle} className="reactcards-card">
+  <div className={"reactcards-card "+style.card}>
   {props.title ? <CardHeader>{props.title}</CardHeader> : null}
-  {props.doc ? <Markdown style={docStyle}>{props.doc}</Markdown> : null}
+  {props.doc ? <Markdown className={style.markdownDoc}>{props.doc}</Markdown> : null}
   {props.children}
   </div>
 )
