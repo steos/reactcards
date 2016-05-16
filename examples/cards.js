@@ -1,15 +1,16 @@
 import React from 'react'
-import devcards from '../src'
+import cards from '../src'
 import {Foo, Bar, StatefulCounter, StatelessCounter, TodoList} from './components'
 import * as testSimple from './test/simple'
 import * as testComponents from './test/components'
 import * as advancedTestComponents from './test/advanced'
-const dc = devcards('foobar')
-const dc2 = devcards('ABC')
 
-dc2.card(<Foo message="yo" />, 'here is  a simple example')
+const demo = cards('demo')
+const abc = cards('ABC')
 
-dc.card(
+abc.card(<Foo message="yo" />, 'here is  a simple example')
+
+demo.card(
   <Foo message="hello"/>, {
   doc:
   `## markdown doc
@@ -19,11 +20,11 @@ dc.card(
   `
 })
 
-dc.card(<Foo message="hello world"/>)
+demo.card(<Foo message="hello world"/>)
 
-dc.card(<Bar/>, {title: 'a bar card'})
+demo.card(<Bar/>, {title: 'a bar card'})
 
-dc.card(<StatefulCounter value={42}/>, {
+demo.card(<StatefulCounter value={42}/>, {
   doc:
   `## Counter
 
@@ -35,7 +36,7 @@ dc.card(<StatefulCounter value={42}/>, {
   if you want this to work as expected.`
 })
 
-dc.card(
+demo.card(
   (state) =>
     <StatelessCounter
       value={state.get()}
@@ -51,7 +52,7 @@ dc.card(
   you set the *inspect* flag to true.`
 })
 
-dc.card(
+demo.card(
   (state) =>
     <StatelessCounter
       value={state.get()}
@@ -65,7 +66,7 @@ dc.card(
   Same example as before but with undo/redo controls added by the card.`
 })
 
-dc.card(
+demo.card(
   (state) =>
     <TodoList items={state.get()}
       onSubmit={(text) => state.update(items => [...items, {text, done: false}])}
@@ -84,25 +85,19 @@ dc.card(
   with a little more interesting model than just a simple number.`
 })
 
-// // dc.tape(testComponents, 'component tests 1')
-
-// // dc.tape(testComponents, 'component tests 2')
-
-dc.markdown(`
+demo.markdown(`
 # a markdown card
 this is a simple markdown card
 - lorem
 - ipsum
 `)
 
-dc.test(testSimple, {title:'simple tests'})
+demo.test(testSimple, {title:'simple tests'})
 
-dc.test(testComponents, {
+demo.test(testComponents, {
   doc:
   `## component tests
   Here you can see the results of some component tests.`
 })
 
-dc.test(advancedTestComponents, { title: 'advanced component tests' })
-
-export default dc
+demo.test(advancedTestComponents, { title: 'advanced component tests' })

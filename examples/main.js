@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
-import devcards from './cards'
+import {} from './cards'
 import {CardList} from '../src/components'
 import {AppContainer} from 'react-hot-loader'
 import { Root } from '../src/'
