@@ -5,8 +5,6 @@ import createHistory from '../node_modules/history/lib/createMemoryHistory'
 import Container from '../src/Container'
 import { Card, CardList } from '../src/components'
 
-let history
-
 const namespaces = { foo: [ <Card title="one"/>, <Card title="two" />], bar: [ <Card title="three" /> ] }
 
 describe('Testing <Container />', () => {
