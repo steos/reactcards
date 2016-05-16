@@ -36,19 +36,16 @@ export default class Container extends Component {
     render() {
         const { namespaces } = this.props
         const { routes, activeNamespace } = this.state
-        let cards = namespaces[activeNamespace]
+        const cards = namespaces[activeNamespace]
+        const navCard = this.renderNavCard(routes, activeNamespace)
         return <div>
             <div style={ headerStyle }>React Cards</div>
             {cards
                 ? <div>
-                    <div style={{...crumbStyle, marginBottom:'1em'}}>
-                      <a style={ linkStyle } href={ routes.index() }>Index</a>
-                      &nbsp;/&nbsp;
-                      {activeNamespace}
-                    </div>
-                    <CardList namespace={ activeNamespace }>{ cards }</CardList>
+                    <CardList namespace={ activeNamespace }>{ [navCard, ...cards] }</CardList>
                 </div>
                 : <div className='menu'>
+                    <CardList>
                     {map(namespaces, (namespace, key) => (
                         <Card key={key} style={ menuListStyle }>
                             <a style={ linkMenuStyle }
@@ -57,8 +54,18 @@ export default class Container extends Component {
                             </a>
                         </Card>
                     ))}
+                    </CardList>
                 </div>
             }
         </div>
+    }
+    renderNavCard(routes, ns) {
+      return (
+        <Card key='navcard' style={{...crumbStyle, marginBottom:'1em'}}>
+          <a style={ linkStyle } href={ routes.index() }>home</a>
+          &nbsp;/&nbsp;
+          {ns}
+        </Card>
+      )
     }
 }

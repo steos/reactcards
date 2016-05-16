@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "chai": "^3.5.0",
+    "deep-equal": "^1.0.1",
     "enzyme": "^2.3.0",
     "history": "^2.1.1",
     "myro": "^0.6.2",

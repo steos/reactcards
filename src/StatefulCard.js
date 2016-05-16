@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Card} from './components'
 import { boxStyle, jsonStyle } from './styles'
+import deepEqual from 'deep-equal'
 
 export default class StatefulCard extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ export default class StatefulCard extends Component {
     })
   }
   componentWillReceiveProps(nextProps) {
+    if (deepEqual(nextProps.init, this.props.init)) return
     this.update(() => nextProps.init)
   }
   undo() {
