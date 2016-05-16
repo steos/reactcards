@@ -14,16 +14,16 @@ With React Cards we can display the component in many different states along wit
 
 ### Getting started
 
-A. Clone this repository and run
+Clone this repository and run
 
 ```javascript
 npm install
-npm start example
+npm run example
 ```
 
 React Cards will be available at http://localhost:8080
 
-To see React Cards in action, go to the example directory and start experimenting with devcards.js
+To see React Cards in action, go to the example directory and start experimenting.
 
 ## Writing Cards
 
@@ -91,7 +91,7 @@ const demo = cards('demo')
 demo.card(
   `## Undo/Redo
   Same example as before but with undo/redo controls added by the card.`,
-  
+
   (state) =>
     <StatelessCounter
       value={state.get()}
