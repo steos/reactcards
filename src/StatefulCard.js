@@ -55,17 +55,17 @@ export default class StatefulCard extends Component {
   }
   renderHistoryControl() {
     return (
-      <div style={{marginBottom:'1em'}}>
-        <button onClick={this.undo.bind(this)}
+      <div className='react-card-history-control' style={{marginBottom:'1em'}}>
+        <button id='react-card-undo' onClick={this.undo.bind(this)}
           disabled={this.state.history.length < 1}>Undo</button>
-        <button onClick={this.redo.bind(this)}
+        <button id='react-card-redo' onClick={this.redo.bind(this)}
           disabled={this.state.future.length < 1}>Redo</button>
       </div>
     )
   }
   renderInspect() {
     return (
-      <div style={boxStyle}>
+      <div className='react-card-inspect' style={boxStyle}>
       <p style={{fontSize:'.7em',color:'#777'}}>model:</p>
       <pre style={jsonStyle}>{JSON.stringify(this.getModel(), null, ' ')}</pre>
       </div>
