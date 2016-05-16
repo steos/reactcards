@@ -31,12 +31,12 @@ describe('Testing <StatefulCard />', () => {
 
     it('should display history', () => {
         const component = shallow(<StatefulCard history={true}>{ content }</StatefulCard>)
-        expect(component.find('.react-card-history-control')).to.be.length(1)
+        expect(component.find('.react-cards-history-control')).to.be.length(1)
     })
 
     it('should display inspect', () => {
         const component = shallow(<StatefulCard inspect={true}>{ content }</StatefulCard>)
-        expect(component.find('.react-card-inspect')).to.be.length(1)
+        expect(component.find('.react-cards-inspect')).to.be.length(1)
     })
 
     it('should display current state', () => {
@@ -58,8 +58,8 @@ describe('Testing <StatefulCard />', () => {
         incBtn.simulate('click')
         expect(component.find('#theCurrentValue').text()).to.be.equal('101')
         // click on undo should change the value
-        const undoBtn = component.find('#react-card-undo')
-        const redoBtn = component.find('#react-card-redo')
+        const undoBtn = component.find('#react-cards-undo')
+        const redoBtn = component.find('#react-cards-redo')
         undoBtn.simulate('click')
         expect(component.find('#theCurrentValue').text()).to.be.equal('100')
         redoBtn.simulate('click')
