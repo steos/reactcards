@@ -29,6 +29,15 @@ To see React Cards in action, go to the example directory and start experimentin
 
 Coming soon.
 
+### Creating a static version of your React Cards
+
+This is still work in progress. For now run
+```javascript
+npm run build:example
+```
+
+This will create a dist folder that includes index.html and app.js.  
+
 ## Writing Cards
 
 ```javascript
