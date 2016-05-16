@@ -29,7 +29,7 @@ export default class Container extends Component {
             '#': {
                 name: 'index'
             },
-            '/#/:namespace': {
+            '#/:namespace': {
                 name: 'namespace'
             }
         })

@@ -5,6 +5,7 @@
   "license": "BSD-3-Clause",
   "scripts": {
     "example": "webpack-dev-server --config examples/webpack.config.js --content-base ./public/ --host 0.0.0.0 --hot --inline",
+    "build:example": "webpack --config examples/webpack.production.config.js && cp public/index.html examples/dist/index.html",
     "test": "mocha -w test/setup.js test/*test.js",
     "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -w test/setup.js -- test/*.test.js"
   },
