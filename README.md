@@ -12,7 +12,7 @@ This approach has many benefits.
 A component with multiple possible states can be difficult to test and document.
 With React Cards we can display the component in many different states along with documentation and tests to ensure nothing breaks while we're working on the component.
 
-### Getting started
+### Getting Started
 
 Clone this repository and run
 
@@ -25,11 +25,11 @@ React Cards will be available at http://localhost:8080
 
 To see React Cards in action, go to the example directory and start experimenting.
 
-### Using React Cards in an existing project
+### Using React Cards in an Existing Project
 
 Coming soon.
 
-### Creating a static version of your React Cards
+### Creating a Static Version of Your React Cards
 
 This is still work in progress. For now run
 ```javascript
@@ -47,8 +47,6 @@ import {Foo, Bar} from './components'
 
 const demo = cards('demo')
 
-abc.card(<Foo message="yo" />, 'here is  a simple example')
-
 demo.card(
   `## markdown doc
   you can use markdown for card documentation
@@ -65,12 +63,12 @@ demo.card(<Bar/>, {title: 'a bar card'})
 
 ![card](assets/images/component.png)
 
-#### Creating a stateful component
+#### Creating a Stateful Component
 
 ```javascript
 import React from 'react'
 import cards from 'reactcards'
-import {StatefulComponent} from './components'
+import {StatefulCounter} from './components'
 
 const demo = cards('demo')
 
@@ -91,13 +89,13 @@ demo.card(
 
 ![card with stateful component](assets/images/component_state.png)
 
-#### Creating a stateful component with undo/redo
+#### Displaying a Component With Undo/Redo
 
 
 ```javascript
 import React from 'react'
 import cards from 'reactcards'
-import {StatefulComponent} from './components'
+import {StatelessCounter} from './components'
 
 const demo = cards('demo')
 
