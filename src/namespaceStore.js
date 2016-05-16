@@ -1,6 +1,6 @@
 // a simplified example for handling namespaces and their corresponding changes
-const namespaceStore = {
-    namespaces: {},
+const namespaceStore = (initialState = {}) => ({
+    namespaces: initialState,
     listeners: [],
     get(namespace) {
         return namespace? this.namespaces[namespace] : this.namespaces
@@ -20,6 +20,6 @@ const namespaceStore = {
     notify() {
         this.listeners.map(l => l(this.namespaces))
     }
-}
+})
 
 export default namespaceStore
