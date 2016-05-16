@@ -1,11 +1,8 @@
 import React, { Component, PropTypes }  from 'react'
 import myro from 'myro'
 import { find, map } from 'lodash'
-import createHistory from '../node_modules/history/lib/createBrowserHistory'
 import { Card, CardList } from './components'
 import { headerStyle, linkStyle, linkMenuStyle, menuStyle, menuListStyle, crumbStyle} from './styles'
-
-let history = createHistory()
 
 export default class Container extends Component {
 
@@ -16,7 +13,7 @@ export default class Container extends Component {
     }
 
     componentWillMount() {
-        this.unlisten = history.listen((location) => {
+        this.unlisten = this.props.history.listen((location) => {
             this.setState({activeNamespace: location.hash.replace('#/', '')})
         })
     }
