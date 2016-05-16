@@ -1,6 +1,7 @@
 import React, { Component, PropTypes }  from 'react'
 import myro from 'myro'
 import { find, map } from 'lodash'
+import createHistory from '../node_modules/history/lib/createBrowserHistory'
 import { Card, CardList } from './components'
 import { headerStyle, linkStyle, linkMenuStyle, menuStyle, menuListStyle, crumbStyle} from './styles'
 
@@ -13,7 +14,8 @@ export default class Container extends Component {
     }
 
     componentWillMount() {
-        this.unlisten = this.props.history.listen((location) => {
+        const history = this.props.history? this.props.history : createHistory()
+        this.unlisten = history.listen((location) => {
             this.setState({activeNamespace: location.hash.replace('#/', '')})
         })
     }
@@ -41,7 +43,7 @@ export default class Container extends Component {
         return <div>
             <div style={ headerStyle }>React Cards</div>
             {cards
-                ? <div>
+                ? <div className='react-cards-namespace-cards'>
                     <CardList namespace={ activeNamespace }>{ [navCard, ...cards] }</CardList>
                 </div>
                 : <div className='menu'>

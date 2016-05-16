@@ -1,21 +1,27 @@
 import React from 'react'
-import createHistory from '../node_modules/history/lib/createBrowserHistory'
 import {Card, CardList, MarkdownCard} from './components'
 import TestCard from './TestCard'
 import StatefulCard from './StatefulCard'
 import Container from './Container'
 import namespaceStore from './namespaceStore'
 
-const history = createHistory()
-
 let store = namespaceStore()
 
-const main = (namespaces) => {
-  return <Container namespaces={ namespaces } history={history} />
+/**
+ *
+ * main function that creates the Container with the supplied namespaces and optional history object
+ *
+ * @param {Object} namespaces an object containing all namepaces and their corresponding
+ * @param {Object} history history object (optional) override with another history object if needed
+ *
+ * @returns {XML}
+ */
+const main = (namespaces, history) => {
+  return <Container namespaces={namespaces} history={history} />
 }
 
 // initialize...
-export const Root = () => <div>{ main(store.get()) }</div>
+export const Root = ({ history }) => <div>{ main(store.get(), history) }</div>
 
 // subscribe to changes
 var f = store.subscribe(main)
