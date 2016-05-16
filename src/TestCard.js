@@ -34,7 +34,6 @@ export default class TestCard extends Component {
     this.runTests(this.props.testModule)
   }
   runTests(testModule) {
-    console.log('running tests', Object.keys(testModule))
     const results = []
     const tests = Object.keys(testModule)
     tests.forEach(name => {
@@ -45,7 +44,6 @@ export default class TestCard extends Component {
         results.push([e, name])
       }
     })
-    console.log(results)
     this.setState({results})
   }
   render() {
