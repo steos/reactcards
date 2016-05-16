@@ -1,27 +1,42 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Card, CardList, MarkdownCard} from './components'
 import TestCard from './TestCard'
 import StatefulCard from './StatefulCard'
 import Container from './Container'
 import namespaceStore from './namespaceStore'
+import { hotNotifyStyle } from './styles'
 
 let store = namespaceStore()
 
-/**
- *
- * main function that creates the Container with the supplied namespaces and optional history object
- *
- * @param {Object} namespaces an object containing all namepaces and their corresponding
- * @param {Object} history history object (optional) override with another history object if needed
- *
- * @returns {XML}
- */
 const main = (namespaces, history) => {
   return <Container namespaces={namespaces} history={history} />
 }
 
+class HotNotify extends Component {
+  constructor(props) {
+    super(props)
+    this._node = null
+  }
+  componentWillReceiveProps() {
+    // TODO will this really only be triggered by a hot update?
+    this._node.style.opacity = 100
+    setTimeout(() => this._node.style.opacity = 0, 500)
+  }
+  render() {
+    return (
+      <div ref={node => this._node = node}
+        style={hotNotifyStyle}>Hot Update</div>
+    )
+  }
+}
+
 // initialize...
-export const Root = ({ history }) => <div>{ main(store.get(), history) }</div>
+export const Root = ({ history }) => (
+  <div>
+    { main(store.get(), history) }
+    <HotNotify/>
+  </div>
+)
 
 // subscribe to changes
 var f = store.subscribe(main)

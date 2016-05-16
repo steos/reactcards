@@ -1,10 +1,9 @@
 {
-  "name": "devcards",
+  "name": "reactcards",
   "version": "0.1.0",
-  "description": "Devcards for JavaScript",
+  "description": "devcards for react",
   "license": "BSD-3-Clause",
   "scripts": {
-    "start": "webpack-dev-server --content-base ./public/ --host 0.0.0.0 --hot --inline",
     "example": "webpack-dev-server --config examples/webpack.config.js --content-base ./public/ --host 0.0.0.0 --hot --inline",
     "test": "mocha -w test/setup.js test/*test.js",
     "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -w test/setup.js -- test/*.test.js"

@@ -1,14 +1,6 @@
 import React, {Component} from 'react'
 import {Card} from './components'
 
-const hStyle = {
-  fontFamily:'sans-serif',
-  fontWeight:'normal',
-  fontSize:'1.1em',
-  margin:0,
-  padding:0,
-}
-
 const testBoxStyle = {
    padding:'12px',
    borderTop:'1px solid white',
@@ -31,16 +23,16 @@ const CloseIcon = (props) => (
 const iconSize = 20
 
 const TestHeader = props => (
-  <h4 style={hStyle}>
-    <span>{props.icon}</span>
+  <div>
+    <div style={{float:'left', marginTop:-2}}>{props.icon}</div>
     <span style={{paddingLeft:'12px'}}>{props.children}</span>
-  </h4>
+  </div>
 )
 
 const TestSuccess = props => (
   <div className='react-card-test-successful' style={{...testBoxStyle, backgroundColor:'#DCEED3'}}>
     <TestHeader icon={<CheckIcon color="green" size={iconSize}/>}>
-      {props.children}
+      <span style={{color:'darkgreen'}}>{props.children}</span>
     </TestHeader>
   </div>
 )
@@ -48,7 +40,7 @@ const TestSuccess = props => (
 const TestFailure = props => (
   <div className='react-card-test-failure' style={{...testBoxStyle, backgroundColor:'#EEDBDA'}}>
     <TestHeader icon={<CloseIcon color="red" size={iconSize}/>}>
-      {props.children}
+      <span style={{color:'darkred'}}>{props.children}</span>
     </TestHeader>
     <div style={{fontFamily:'monospace',marginTop:'12px',marginLeft:'32px'}}>
       {props.error.toString()}
