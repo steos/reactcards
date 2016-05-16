@@ -38,7 +38,7 @@ const TestHeader = props => (
 )
 
 const TestSuccess = props => (
-  <div style={{...testBoxStyle, backgroundColor:'#DCEED3'}}>
+  <div className='react-card-test-successful' style={{...testBoxStyle, backgroundColor:'#DCEED3'}}>
     <TestHeader icon={<CheckIcon color="green" size={iconSize}/>}>
       {props.children}
     </TestHeader>
@@ -46,7 +46,7 @@ const TestSuccess = props => (
 )
 
 const TestFailure = props => (
-  <div style={{...testBoxStyle, backgroundColor:'#EEDBDA'}}>
+  <div className='react-card-test-failure' style={{...testBoxStyle, backgroundColor:'#EEDBDA'}}>
     <TestHeader icon={<CloseIcon color="red" size={iconSize}/>}>
       {props.children}
     </TestHeader>

@@ -20,11 +20,11 @@ describe('Testing <TestCard />', () => {
 
     it('should display the correct result when test succeeds', () => {
         const component = mount(<TestCard  testModule={testModule}/>)
-        expect(component.find('h4').text()).to.contain('✔ randomSuccessfulTest')
+        expect(component.html()).to.be.contain(('react-card-test-success'))
     })
 
     it('should display the correct result when test fails', () => {
         const component = mount(<TestCard  testModule={{randomUnsuccessfulTest}}/>)
-        expect(component.find('h4').text()).to.contain('✘ randomUnsuccessfulTest')
+        expect(component.html()).to.contain('react-card-test-failure')
     })
 })
