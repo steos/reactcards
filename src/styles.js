@@ -70,3 +70,16 @@ export const headerStyle = {
     fontFamily: 'sans-serif',
     color: 'white',
 }
+
+export const hotNotifyStyle = {
+  border: '4px solid white',
+  backgroundColor: 'black',
+  padding: '1em',
+  position: 'fixed',
+  left: '10px',
+  bottom: '10px',
+  color: 'white',
+  fontFamily: 'sans-serif',
+  transition: 'opacity .5s',
+  opacity: 0,
+}

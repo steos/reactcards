@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Card, CardList, MarkdownCard} from './components'
 import TestCard from './TestCard'
 import StatefulCard from './StatefulCard'
 import Container from './Container'
+import { hotNotifyStyle } from './styles'
 
 const namespaces = {}
 
@@ -30,8 +31,31 @@ const main = (namespaces) => {
   return <Container namespaces={ namespaces } />
 }
 
+class HotNotify extends Component {
+  constructor(props) {
+    super(props)
+    this._node = null
+  }
+  componentWillReceiveProps() {
+    // TODO will this really only be triggered by a hot update?
+    this._node.style.opacity = 100
+    setTimeout(() => this._node.style.opacity = 0, 500)
+  }
+  render() {
+    return (
+      <div ref={node => this._node = node}
+        style={hotNotifyStyle}>Hot Update</div>
+    )
+  }
+}
+
 // initialize...
-export const Root = () => <div>{ main(namespaceStore.get()) }</div>
+export const Root = () => (
+  <div>
+    { main(namespaceStore.get()) }
+    <HotNotify/>
+  </div>
+)
 
 // subscribe to changes
 var f = namespaceStore.subscribe(main)

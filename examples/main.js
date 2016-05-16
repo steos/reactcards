@@ -7,8 +7,6 @@ import { Root } from '../src/'
 
 if (module.hot) {
   module.hot.accept()
-  window.hotNotify.style.opacity=100
-  setTimeout(() => window.hotNotify.style.opacity=0, 500)
   window.describe = (text, fn) => fn()
   window.it = (text, fn) => fn()
 }
