@@ -1,9 +1,10 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {render} from 'react-dom'
-import {} from './cards'
-import {CardList} from '../src/components'
+import {buildCards} from './cards'
 import {AppContainer} from 'react-hot-loader'
-import { Root } from '../src/'
+import { ReactCardsRoot } from '../src'
+
+buildCards();
 
 if (module.hot) {
   module.hot.accept()
@@ -11,9 +12,9 @@ if (module.hot) {
   window.it = (text, fn) => fn()
 }
 
-const renderCards = () =>
-  render(<AppContainer><Root /></AppContainer>, window.mountNode)
-
-const run = renderCards
-
-run()
+render(
+  <AppContainer>
+    <ReactCardsRoot />
+  </AppContainer>,
+  window.mountNode
+)
