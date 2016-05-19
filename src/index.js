@@ -31,7 +31,7 @@ class HotNotify extends Component {
 }
 
 // initialize...
-export const Root = ({ history }) => (
+export const ReactCardsRoot = ({ history }) => (
   <div>
     { main(store.get(), history) }
     <HotNotify/>
