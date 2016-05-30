@@ -1,6 +1,10 @@
-import React from 'react'
+import React ,{Component} from 'react'
+import ReactDOM from 'react-dom'
 import showdown from 'showdown'
 import style from './style.less'
+import Frame from 'react-frame-component'
+import {iframeResizer} from 'iframe-resizer'
+import iframeResizerContentWindow from 'raw!iframe-resizer/js/iframeResizer.contentWindow.min'
 
 const markdownToHtml = str => {
   const conv = new showdown.Converter()
@@ -20,13 +24,48 @@ export const CardList = (props) => (
   </div>
 )
 
-export const Card = (props) => (
-  <div className={"reactcards-card "+style.card}>
-  {props.title ? <CardHeader>{props.title}</CardHeader> : null}
-  {props.doc ? <Markdown className={style.markdownDoc}>{props.doc}</Markdown> : null}
-  {props.children}
-  </div>
+export const MarkdownCard = (props) => (
+  <Card><Markdown>{props.children}</Markdown></Card>
 )
 
-export const MarkdownCard = (props) =>
-  <Card><Markdown>{props.children}</Markdown></Card>
+export class Card extends Component {
+  constructor(props) {
+      super(props)
+  }
+
+  componentDidMount() {
+    if (!this.props.noframe) {
+      this.iframeNode = ReactDOM.findDOMNode(this.refs.iframe)
+      iframeResizer({checkOrigin:false},this.iframeNode)
+    }
+  }
+
+  componentWillUnmount(){
+    if (!this.props.noframe) {
+      this.iframeNode.iFrameResizer.close()
+    }
+  }
+
+  render() {
+    const props = this.props;
+    const iframeContent = `<!DOCTYPE html>
+      <html>
+        <head><script>${iframeResizerContentWindow}</script></head>
+        <body><div id="content"></div></body>
+      </html>`
+    return (
+      <div className={"reactcards-card "+style.card}>
+        {props.title ? <CardHeader>{props.title}</CardHeader> : null}
+        {props.doc ? <Markdown className={style.markdownDoc}>{props.doc}</Markdown> : null}
+        {props.noframe ?
+          <div>{props.children}</div> :
+          <Frame ref="iframe"
+            initialContent={iframeContent}
+            mountTarget="#content">
+            {props.children}
+          </Frame>
+        }
+      </div>
+    );
+  }
+}

@@ -49,7 +49,7 @@ export default class Container extends Component {
                 : <div className="react-cards-menu">
                     <CardList>
                     {map(namespaces, (namespace, key) => (
-                        <Card key={key}>
+                        <Card key={key} noframe>
                             <a className={style.nav} href={ routes.namespace({ namespace: key }) }>
                                 { key }
                             </a>
@@ -62,7 +62,7 @@ export default class Container extends Component {
     }
     renderNavCard(routes, ns) {
       return (
-        <Card key='navcard'>
+        <Card key='navcard' noframe>
           <div className={style.navCrumbs}>
             <a href={ routes.index() }>home</a>
             &nbsp;/&nbsp;
