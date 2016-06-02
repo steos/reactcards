@@ -11,11 +11,12 @@ export function buildCards() {
 
   abc.card(<Foo message="yo" />, 'here is  a simple example')
 
-  demo.card(
-    `## markdown doc
-    you can use markdown for card documentation
-    - foo
-    - bar`,
+  demo.card(`
+## markdown doc
+you can use markdown for card documentation
+- foo
+- bar
+    `,
     <Foo message="hello"/>
   )
 
@@ -23,25 +24,26 @@ export function buildCards() {
 
   demo.card(<Bar/>, {title: 'a bar card'})
 
-  demo.card(
-    `## Counter
+  demo.card(`
+## Counter
 
-    This is a stateful counter. If you change the value prop
-    in the source file it will not update because the new prop will be ignored
-    and instead the component local state is rendered.
+This is a stateful counter. If you change the value prop
+in the source file it will not update because the new prop will be ignored
+and instead the component local state is rendered.
 
-    Implement *componentWillReceiveProps* and override the component local state
-    if you want this to work as expected.`,
+Implement *componentWillReceiveProps* and override the component local state
+if you want this to work as expected.
+    `,
 
     <StatefulCounter value={42}/>
   )
 
-  demo.card(
-    `## Stateless Counter
-    This example shows how to manage state when you have a stateless
-    component. The card can also dump the current state as JSON if
-    you set the *inspect* flag to true.`,
-
+  demo.card(`
+## Stateless Counter
+This example shows how to manage state when you have a stateless
+component. The card can also dump the current state as JSON if
+you set the *inspect* flag to true.
+    `,
     (state) =>
       <StatelessCounter
         value={state.get()}
@@ -53,10 +55,10 @@ export function buildCards() {
     }
   )
 
-  demo.card(
-    `## Undo/Redo
-    Same example as before but with undo/redo controls added by the card.`,
-
+  demo.card(`
+## Undo/Redo
+Same example as before but with undo/redo controls added by the card.
+    `,
     (state) =>
       <StatelessCounter
         value={state.get()}
@@ -68,11 +70,11 @@ export function buildCards() {
     }
   )
 
-  demo.card(
-    `## TodoList
-    A simple todo list showing history and inspect feature
-    with a little more interesting model than just a simple number.`,
-
+  demo.card(`
+## TodoList
+A simple todo list showing history and inspect feature
+with a little more interesting model than just a simple number.
+    `,
     (state) =>
       <TodoList items={state.get()}
         onSubmit={(text) => state.update(items => [...items, {text, done: false}])}
@@ -89,17 +91,18 @@ export function buildCards() {
   )
 
   demo.markdown(`
-  # a markdown card
-  this is a simple markdown card
-  - lorem
-  - ipsum
+# a markdown card
+this is a simple markdown card
+- lorem
+- ipsum
   `)
 
   demo.test(testSimple, {title:'simple tests'})
 
-  demo.test(
-    `## component tests
-    Here you can see the results of some component tests.`,
+  demo.test(`
+## component tests
+Here you can see the results of some component tests.
+    `,
     testComponents
   )
 

@@ -77,7 +77,7 @@ export default class TestCard extends Component {
   render() {
     const {title, doc} = this.props
     return (
-      <Card {...{title, doc}}>
+      <Card noframe {...{title, doc}}>
       {this.state.results.map(([result, name], index) => (
         result === true
           ? <TestSuccess key={index}>{name}</TestSuccess>
