@@ -68,7 +68,7 @@ export default class TestCard extends Component {
       try {
         testModule[name]()
         results.push([true, name])
-      } catch(e) {
+      } catch (e) {
         results.push([e, name])
       }
     })

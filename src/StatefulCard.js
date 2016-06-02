@@ -29,7 +29,7 @@ export default class StatefulCard extends Component {
   }
   undo() {
     if (this.state.history.length < 1) return
-    const last = this.state.history[this.state.history.length-1]
+    const last = this.state.history[this.state.history.length - 1]
     this.setState({
       model: last,
       history: this.state.history.slice(0, -1),
@@ -38,7 +38,7 @@ export default class StatefulCard extends Component {
   }
   redo() {
     if (this.state.future.length < 1) return
-    const last = this.state.future[this.state.future.length-1]
+    const last = this.state.future[this.state.future.length - 1]
     this.setState({
       model: last,
       future: this.state.future.slice(0, -1),
@@ -67,7 +67,7 @@ export default class StatefulCard extends Component {
   }
   renderInspect() {
     return (
-      <div className={'react-cards-inspect '+style.inspectBox}>
+      <div className={'react-cards-inspect ' + style.inspectBox}>
       <p style={{fontSize:'.7em',color:'#777'}}>model:</p>
       <pre>{JSON.stringify(this.getModel(), null, ' ')}</pre>
       </div>

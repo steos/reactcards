@@ -1,12 +1,12 @@
 var path = require('path')
 module.exports = {
-  context: path.join(__dirname, ""),
+  context: path.join(__dirname, ''),
   entry: [
     './main'
   ],
   output: {
-    filename: "app.js",
-    path: path.join(__dirname, "dist")
+    filename: 'app.js',
+    path: path.join(__dirname, 'dist')
   },
 
   module: {
@@ -16,10 +16,10 @@ module.exports = {
       loaders: ['babel?{presets:["es2015", "react", "stage-2"], plugins:["react-hot-loader/babel"]}']
     }, {
       test: /\.css$/,
-      loader: "style-loader!css-loader"
+      loader: 'style-loader!css-loader'
     }, {
       test: /\.less$/,
-      loader: "style-loader!css-loader!less-loader"
+      loader: 'style-loader!css-loader!less-loader'
     }, {
       test: /\.(gif|jpg|jpeg|png)(\?]?.*)?$/,
       loader: 'url-loader?limit=1024'
@@ -31,7 +31,7 @@ module.exports = {
   },
 
   node: {
-    fs: "empty"
+    fs: 'empty'
   },
 
   // we need this because of enzyme

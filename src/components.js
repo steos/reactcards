@@ -30,7 +30,7 @@ export const MarkdownCard = (props) => (
 
 export class Card extends Component {
   constructor(props) {
-      super(props)
+    super(props)
   }
 
   componentDidMount() {
@@ -40,7 +40,7 @@ export class Card extends Component {
     }
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     if (!this.props.noframe) {
       this.iframeNode.iFrameResizer.close()
     }
@@ -54,7 +54,7 @@ export class Card extends Component {
         <body><div id="content"></div></body>
       </html>`
     return (
-      <div className={"reactcards-card "+style.card}>
+      <div className={'reactcards-card ' + style.card}>
         {props.title ? <CardHeader>{props.title}</CardHeader> : null}
         {props.doc ? <Markdown className={style.markdownDoc}>{props.doc}</Markdown> : null}
         {props.noframe ?

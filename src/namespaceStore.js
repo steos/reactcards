@@ -3,7 +3,7 @@ const namespaceStore = (initialState = {}) => ({
   namespaces: initialState,
   listeners: [],
   get(namespace) {
-    return namespace? this.namespaces[namespace] : this.namespaces
+    return namespace ? this.namespaces[namespace] : this.namespaces
   },
   set(namespace, cards) {
     this.namespaces[namespace] = cards
