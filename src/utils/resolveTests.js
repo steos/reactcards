@@ -5,27 +5,16 @@ import isArray from 'lodash/isArray'
  *
  * Calls all reactcards Component tests for mocha/jasmine cli tests
  *
- * For example:
- *
- * export function testFooComponent() {
- *   const wrapper = shallow(<Foo message="testing"/>)
- *   assert.equal(wrapper.text(), "Foo says 'testing.'")
- * }
- *
- * would mean one would have to call every function explicitly
- *
- * // main.test.js
- *
- * testFooComponent()
- *
- * Instead having to manually execute all functions use resolveTests.
+ * resolveTests calls all component tests instead of having to manually execute all of them
  *
  * Import all Component tests and resolveTests will run all functions.
  *
- * import resolveTests from '../../src/utils/resolveTests'
- * import * as advanced from './advanced'
  *
- * resolveTests([advanced])
+ *     import resolveTests from '../../src/utils/resolveTests'
+ *     import * as advanced from './advanced'
+ *
+ *     resolveTests([advanced])
+ *
  *
  * @param {Array} testComponents
  * @returns {boolean}
