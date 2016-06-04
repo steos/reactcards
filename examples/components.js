@@ -19,7 +19,6 @@ export class Foo extends Component {
 }
 
 export const Bar = (props) => {
-  console.log('bar rendering', props)
   return (<div className='bar'>a bar. drink up!</div>)
 }
 
