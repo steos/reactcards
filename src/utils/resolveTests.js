@@ -1,4 +1,4 @@
-import mapValues from 'lodash/mapValues'
+import forEach from 'lodash/forEach'
 import isArray from 'lodash/isArray'
 
 /**
@@ -23,7 +23,7 @@ const resolveTests = testComponents => {
     if (!isArray(testComponents)) {
         return false
     }
-    mapValues(testComponents, testComponent => mapValues(testComponent, fn => fn()))
+    forEach(testComponents, testComponent => forEach(testComponent, fn => fn()))
 }
 
 export default resolveTests
