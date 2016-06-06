@@ -2,7 +2,7 @@ import React from 'react'
 import { mount, shallow } from 'enzyme'
 import { assert, expect } from 'chai'
 import createHistory from 'history/lib/createMemoryHistory'
-import ReactCards, { Root } from '../src/index'
+import cards, { ReactCards } from '../src/index'
 
 let rc
 let history
@@ -19,20 +19,20 @@ const StatelessCounter = props => (
 
 describe('Test React Cards', () => {
     beforeEach(() => {
-        rc = ReactCards('foo');
+        rc = cards('foo');
         history = createHistory()
     })
 
     it('Should display the namespace in menu', () => {
         rc.card(<Foo message="hello" />, 'here is  a simple example')
-        const root = mount(<Root history={history}/>)
+        const root = mount(<ReactCards history={history}/>)
         expect(root.html()).to.contain('foo')
     })
 
     it('Should display the card if namespace is selected', () => {
         rc.card(<Foo message="hello this is a test" />, 'here is  a simple example')
         history.push('/#/foo')
-        const root = mount(<Root history={history}/>)
+        const root = mount(<ReactCards history={history}/>)
         expect(root.html()).to.contain('hello this is a test')
     })
 
@@ -40,7 +40,7 @@ describe('Test React Cards', () => {
         rc.card(<Foo message="hello this is a test" />, 'here is  a simple example')
         rc.card(<Foo message="hello this is another test" />, 'here is  a simple example')
         history.push('/#/foo')
-        const root = mount(<Root history={history}/>)
+        const root = mount(<ReactCards history={history}/>)
         expect(root.html()).to.contain('hello this is a test')
         expect(root.html()).to.contain('hello this is another test')
     })
@@ -57,7 +57,7 @@ describe('Test React Cards', () => {
             }
         )
         history.push('/#/foo')
-        const root = mount(<Root history={history}/>)
+        const root = mount(<ReactCards history={history}/>)
         expect(root.find('button')).to.be.length(2)
         expect(root.find('#model').text()).to.be.equal('123')
 
@@ -66,7 +66,7 @@ describe('Test React Cards', () => {
     it('Should display a markdown card if namespace is selected', () => {
         rc.markdown('_test some random markdown_')
         history.push('/#/foo')
-        const root = mount(<Root history={history}/>)
+        const root = mount(<ReactCards history={history}/>)
         expect(root.html()).to.contain('<em>test some random markdown</em>')
     })
 
@@ -74,7 +74,7 @@ describe('Test React Cards', () => {
         const assertSomething = () => assert.equals(1, 1)
         rc.test({ assertSomething }, {title:'some random test'})
         history.push('/#/foo')
-        const root = mount(<Root history={history} />)
+        const root = mount(<ReactCards history={history} />)
         expect(root.html()).to.contain('some random test')
         expect(root.html()).to.contain('assertSomething')
     })

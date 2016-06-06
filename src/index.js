@@ -35,7 +35,7 @@ export const addPaths = pathDefinitions => {
 }
 
 // initialize...
-const ReactCards = ({ history }) => (
+export const ReactCards = ({ history }) => (
   <div>
     { main(store.get(), history) }
     <HotNotify/>
