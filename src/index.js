@@ -1,10 +1,8 @@
-import React, {Component} from 'react'
-import {Card, CardList, MarkdownCard} from './components'
-import TestCard from './TestCard'
-import StatefulCard from './StatefulCard'
-import Container from './Container'
+import React, { Component } from 'react'
+import { Card, CardList, MarkdownCard, TestCard, StatefulCard, Container } from './components/'
 import namespaceStore from './namespaceStore'
-import style from './style.less'
+import mount from './mount'
+import style from './components/style.less'
 
 let store = namespaceStore()
 
@@ -30,13 +28,22 @@ class HotNotify extends Component {
   }
 }
 
+export let paths = () => null
+
+export const addPaths = pathDefinitions => {
+  paths = pathDefinitions
+}
+
 // initialize...
-export const Root = ({ history }) => (
+const ReactCards = ({ history }) => (
   <div>
     { main(store.get(), history) }
     <HotNotify/>
   </div>
 )
+
+// main client entry point
+export const run = () => mount(ReactCards)
 
 // subscribe to changes
 var f = store.subscribe(main)

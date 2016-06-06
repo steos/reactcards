@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Card} from './components'
+import Card from './Card'
 
 const testBoxStyle = {
    padding:'12px',

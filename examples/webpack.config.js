@@ -1,7 +1,8 @@
 var path = require('path')
+var webpack = require('webpack')
 module.exports = {
     //devtool: 'source-map',
-    context: path.join(__dirname, ""),
+    context: path.resolve(__dirname),
     entry: [
       'webpack/hot/only-dev-server',
       'react-hot-loader/patch',
@@ -9,24 +10,32 @@ module.exports = {
     ],
     output: {
         filename: "app.js",
-        path: path.join(__dirname, "public"),
+        path: path.resolve(__dirname, "../dist"),
+        public: path.resolve(__dirname, "../public"),
     },
+    plugins: [
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+    ],
 
     module: {
         loaders: [
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loaders: ['babel?{presets:["es2015", "react", "stage-2"], plugins:["react-hot-loader/babel"]}'],
+                test: /\.jsx?$/,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015', 'react', 'stage-2']
+                },
+                exclude: [path.resolve('./node_modules'), path.resolve(__dirname, 'node_modules')]
             },
-            {
-              test: /\.css$/,
-              loader: "style-loader!css-loader"
-            },
-            {
-                test: /\.less$/,
-                loader: "style-loader!css-loader!less-loader"
-            }
+            //{
+            //    test: /\.css$/,
+            //    loader: "style-loader!css-loader"
+            //},
+            //{
+            //    test: /\.less$/,
+            //    loader: "style-loader!css-loader!less-loader"
+            //}
         ],
     },
 
