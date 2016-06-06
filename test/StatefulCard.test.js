@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount, shallow } from 'enzyme'
 import { expect } from 'chai'
-import StatefulCard from '../src/StatefulCard'
+import { StatefulCard } from '../src/components'
 
 const StatelessCounter = props => (
     <div className='statelessCounter'>

@@ -2,7 +2,8 @@ import React, { Component, PropTypes }  from 'react'
 import myro from 'myro'
 import { find, map } from 'lodash'
 import createHistory from 'history/lib/createBrowserHistory'
-import { Card, CardList } from './components'
+import Card from './Card'
+import CardList from './CardList'
 import style from './style.less'
 
 export default class Container extends Component {

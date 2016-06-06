@@ -2,8 +2,7 @@ import React from 'react'
 import { mount, shallow } from 'enzyme'
 import { expect } from 'chai'
 import createHistory from '../node_modules/history/lib/createMemoryHistory'
-import Container from '../src/Container'
-import { Card, CardList } from '../src/components'
+import { Container, Card, CardList } from '../src/components'
 
 const namespaces = { foo: [ <Card title="one"/>, <Card title="two" />], bar: [ <Card title="three" /> ] }
 

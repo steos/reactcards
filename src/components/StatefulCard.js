@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Card} from './components'
+import Card from './Card'
 import deepEqual from 'deep-equal'
 import style from './style.less'
 

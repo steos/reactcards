@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount, shallow } from 'enzyme'
 import { assert, expect } from 'chai'
-import TestCard from '../src/TestCard'
+import { TestCard } from '../src/components'
 
 function randomSuccessfulTest() {
     assert.equal(1, 1)
