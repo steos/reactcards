@@ -4,6 +4,10 @@
   "description": "devcards for react",
   "license": "BSD-3-Clause",
   "main": "dist/client.bundle.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/steos/reactcards.git"
+  },
   "scripts": {
     "build:client": "webpack --config webpack.production.config",
     "build:server": "babel --presets es2015,stage-2,react src/server/ -d dist",
