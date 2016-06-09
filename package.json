@@ -12,7 +12,8 @@
     "example:test": "mocha -w test/setup.js examples/test/*.js",
     "build:example": "webpack --config examples/webpack.production.config.js && cp public/index.html examples/dist/index.html",
     "test": "mocha -w test/setup.js test/*test.js",
-    "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -w test/setup.js -- test/*.test.js"
+    "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -w test/setup.js -- test/*.test.js",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
@@ -52,6 +53,6 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "bin": {
-    "reactcard-start": "./dist/server.js"
+    "reactcards": "./dist/server.js"
   }
 }
