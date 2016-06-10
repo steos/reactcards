@@ -17,17 +17,16 @@ const app = express()
 const CONFIG_FILE_NAME = 'config.js'
 const WEBPACK_FILE_NAME = 'webpack.config.js'
 
-const createConfiguration = (config, configDir) => {
+const createConfiguration = (config, entryFile) => {
 
-    const entryFile = path.resolve(configDir, CONFIG_FILE_NAME)
     if (!fs.existsSync(entryFile)) {
-        throw new Error(`${CONFIG_FILE_NAME} file missing in ${configDir}.\n`)
+        throw new Error(`${CONFIG_FILE_NAME} file "${entryFile}" missing.\n`)
     }
 
     // add the applications entry file to the webpack configuration
-    config.entry.push(entryFile)
+    config.entry.push(path.resolve(entryFile))
 
-    const customWebpack = path.resolve(configDir, WEBPACK_FILE_NAME)
+    const customWebpack = path.resolve(path.dirname(entryFile), WEBPACK_FILE_NAME)
     if (!fs.existsSync(customWebpack)) {
         console.info('No custom webpack configuration found.');
         return config
@@ -54,26 +53,20 @@ const createConfiguration = (config, configDir) => {
 // cli arguments
 program
     .version(packageConfiguration.version)
-    .option('-p, --port <number>', 'Port to run React Cards (Required)', parseInt)
-    .option('-c, --configDir <path>', 'Configuration directory for React Cards')
+    .usage('[options]')
+    .option('-p, --port <number>', 'Port to run React Cards', parseInt)
+    .option('-e, --entry <file>', 'Entry point for React Cards')
     .parse(process.argv)
 
 // settings
-const { port = 8080, configDir = '.', assetsDir } = program
+const { port = 8080, entry = './reactcards.js' } = program
 
 if (!port) {
     console.info(`No port defined. React Cards will run at port ${port}.\n`)
 }
 
-if (assetsDir) {
-    const assetsPath = path.resolve(assetsDir)
-    if (fs.existsSync(assetsPath)) {
-        app.use(express.static(assetsPath, { index: false }))
-        console.info(`Loading assets from ${assetsPath} .\n`)
-    }
-}
 
-const config = createConfiguration(webpackConfiguration, configDir)
+const config = createConfiguration(webpackConfiguration, entry)
 const compiler = webpack(config)
 
 const options = {
