@@ -17,7 +17,7 @@ const app = express()
 const CONFIG_FILE_NAME = 'config.js'
 const WEBPACK_FILE_NAME = 'webpack.config.js'
 
-const createConfiguration = (config, entryFile) => {
+const createConfiguration = (config, entryFile, configDir) => {
 
     if (!fs.existsSync(entryFile)) {
         throw new Error(`${CONFIG_FILE_NAME} file "${entryFile}" missing.\n`)
@@ -26,7 +26,7 @@ const createConfiguration = (config, entryFile) => {
     // add the applications entry file to the webpack configuration
     config.entry.push(path.resolve(entryFile))
 
-    const customWebpack = path.resolve(path.dirname(entryFile), WEBPACK_FILE_NAME)
+    const customWebpack = path.resolve(configDir, WEBPACK_FILE_NAME)
     if (!fs.existsSync(customWebpack)) {
         console.info('No custom webpack configuration found.');
         return config
@@ -56,17 +56,17 @@ program
     .usage('[options]')
     .option('-p, --port <number>', 'Port to run React Cards', parseInt)
     .option('-e, --entry <file>', 'Entry point for React Cards')
+    .option('-c, --configDir <path>', 'Configuration directory for React Cards')
     .parse(process.argv)
 
 // settings
-const { port = 8080, entry = './reactcards.js' } = program
+const { port = 8080, entry = './reactcards.js', configDir = '.' } = program
 
 if (!port) {
     console.info(`No port defined. React Cards will run at port ${port}.\n`)
 }
 
-
-const config = createConfiguration(webpackConfiguration, entry)
+const config = createConfiguration(webpackConfiguration, entry, configDir)
 const compiler = webpack(config)
 
 const options = {
