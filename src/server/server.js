@@ -32,6 +32,9 @@ const createConfiguration = (config, entryFile, configDir) => {
         return config
     }
 
+    // unset config loaders as project specific webpack config has been found.
+    config.module.loaders = [];
+
     const customConfig = require(customWebpack)
 
     if (typeof customConfig === 'function') {
