@@ -12,9 +12,6 @@
     "build:client": "webpack --config webpack.production.config",
     "build:server": "babel --presets es2015,stage-2,react src/server/ -d dist",
     "build": "npm run build:client && npm run build:server",
-    "example": "webpack-dev-server --config examples/webpack.config.js --content-base ./public/ --host 0.0.0.0 --hot --inline",
-    "example:test": "mocha -w test/setup.js examples/test/*.js",
-    "build:example": "webpack --config examples/webpack.production.config.js && cp public/index.html examples/dist/index.html",
     "test": "mocha -w test/setup.js test/*test.js",
     "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -w test/setup.js -- test/*.test.js",
     "prepublish": "npm run build"
@@ -49,6 +46,7 @@
     "less-loader": "^2.2.3",
     "lodash": "^4.12.0",
     "myro": "^0.6.2",
+    "postcss-loader": "^0.9.1",
     "react": "^15.0.2",
     "react-addons-test-utils": "^15.0.2",
     "react-dom": "^15.0.2",
@@ -60,7 +58,6 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "bin": {
-    "reactcards": "./dist/server.js",
-    "reactcards-build": "./dist/build.js"
+    "reactcards": "./dist/server.js"
   }
 }
