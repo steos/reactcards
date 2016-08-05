@@ -29,7 +29,7 @@ if (module.hot) {
     module.hot.accept()
 }
 
-// of we go...
+// off we go...
 run();
 ```
 
