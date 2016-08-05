@@ -26,7 +26,13 @@ module.exports = {
             loader: 'babel-loader',
             query: {
                 presets: ['es2015', 'react', 'stage-2'],
-                plugins:["react-hot-loader/babel"]
+                plugins:[
+                    "react-hot-loader/babel",
+                    "babel-plugin-syntax-trailing-function-commas",
+                    "babel-plugin-transform-class-properties",
+                    "babel-plugin-transform-object-rest-spread",
+                    "babel-plugin-transform-react-constant-elements"
+                ]
             },
             exclude: [path.resolve('./node_modules'), path.resolve(__dirname, 'node_modules')],
             include: [path.resolve('./'), path.resolve(__dirname, '../src')]
@@ -36,6 +42,10 @@ module.exports = {
         }, {
             test: /\.less$/,
             loader: "style-loader!css-loader!less-loader"
+        },
+        {
+            test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,
+            loader: 'file-loader',
         }]
     },
 

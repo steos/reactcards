@@ -14,16 +14,51 @@ With React Cards we can display the component in many different states along wit
 
 ### Getting Started
 
-Clone this repository and run
+```javascript
+npm install reactcards
+```
+
+Add an entry file (f.e. entry.js)
 
 ```javascript
-npm install
-npm run example
+import {run} from 'reactcards';
+import './someCard';
+
+
+if (module.hot) {
+    module.hot.accept()
+}
+
+// of we go...
+run();
+```
+
+Add reactcards to your package.json
+
+```javascript
+"scripts": {
+    ...
+    "reactcards": "reactcards -p 8080 -e ./entry.js",
+    ...
+}
+```
+
+Available options for reactcards 
+
+```
+-p, --port <number> Port to run React Card
+-e, --entry <file> Entry point for React Cards
+-c, --conf <file> Custom Webpack config file
+```
+
+Now you can simply run 
+
+```javascript
+npm run reactcards
 ```
 
 React Cards will be available at http://localhost:8080
 
-To see React Cards in action, go to the example directory and start experimenting.
 
 ### Using React Cards in an Existing Project
 
@@ -31,12 +66,7 @@ Coming soon.
 
 ### Creating a Static Version of Your React Cards
 
-This is still work in progress. For now run
-```javascript
-npm run build:example
-```
-
-This will create a dist folder that includes index.html and app.js.  
+Coming soon.
 
 ## Writing Cards
 

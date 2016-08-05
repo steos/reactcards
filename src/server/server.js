@@ -25,8 +25,7 @@ const createConfiguration = (config, entryFile, customWebpackConfig) => {
     // add the applications entry file to the webpack configuration
     config.entry.push(path.resolve(entryFile))
 
-    const customWebpack = path.resolve(customWebpackConfig)
-    if (!customWebpackConfig || !fs.existsSync(customWebpack)) {
+    if (!customWebpackConfig || !path.resolve(customWebpackConfig)) {
         console.info('No custom webpack configuration found.');
         return config
     }
@@ -34,7 +33,7 @@ const createConfiguration = (config, entryFile, customWebpackConfig) => {
     // unset config loaders as project specific webpack config has been found.
     config.module.loaders = [];
 
-    const customConfig = require(customWebpack)
+    const customConfig = require(path.resolve(customWebpackConfig))
 
     if (typeof customConfig === 'function') {
         return customConfig(config)
@@ -58,7 +57,7 @@ program
     .usage('[options]')
     .option('-p, --port <number>', 'Port to run React Cards', parseInt)
     .option('-e, --entry <file>', 'Entry point for React Cards')
-    .option('-c, --conf <path>', 'Custom Webpack config file')
+    .option('-c, --conf <file>', 'Custom Webpack config file')
     .parse(process.argv)
 
 // settings
@@ -104,5 +103,5 @@ app.listen(port);
 console.log(`listening on port ${port}`);
 
 process.on('SIGINT', function () {
-    process.exit();
+    process.exit()
 });
