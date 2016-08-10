@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, CardList, MarkdownCard, TestCard, StatefulCard, Container } from './components/'
+import { Card, CardList, MarkdownCard, TestCard, StatefulCard, Container } from './components'
 import namespaceStore from './namespaceStore'
 import mount from './mount'
 import style from './components/style.less'
@@ -26,12 +26,6 @@ class HotNotify extends Component {
         className={style.hotNotify}>Hot Update</div>
     )
   }
-}
-
-export let paths = () => null
-
-export const addPaths = pathDefinitions => {
-  paths = pathDefinitions
 }
 
 // initialize...
