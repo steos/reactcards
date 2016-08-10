@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Card, CardList, MarkdownCard, TestCard, StatefulCard, Container, HotNotify } from './components'
 import namespaceStore from './namespaceStore'
 import mount from './mount'
+import resolveTests from './utils/resolveTests'
 
 let store = namespaceStore()
 
@@ -9,9 +10,8 @@ const main = (namespaces, history) => {
   return <Container namespaces={namespaces} history={history} />
 }
 
-
 // initialize...
-export const ReactCards = ({ history }) => (
+const ReactCards = ({ history }) => (
   <div>
     { main(store.get(), history) }
     <HotNotify/>
@@ -19,10 +19,7 @@ export const ReactCards = ({ history }) => (
 )
 
 // main client entry point
-export const run = () => mount(ReactCards)
-
-// subscribe to changes
-var f = store.subscribe(main)
+const run = () => mount(ReactCards)
 
 const isStr = x =>
   Object.prototype.toString.call(x) === '[object String]'
@@ -62,4 +59,10 @@ export default function(namespace = 'default') {
       cards.push(<MarkdownCard key={nextId++}>{text}</MarkdownCard>)
     }
   }
+}
+
+export {
+  ReactCards,
+  resolveTests,
+  run,
 }
