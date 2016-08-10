@@ -1,16 +1,6 @@
-import Card from './Card';
-import CardList from './CardList';
-import Container from './Container';
-import MarkdownCard, { Markdown } from './MarkdownCard';
-import StatefulCard from './StatefulCard'
-import TestCard from './TestCard'
-
-export {
-    Card,
-    CardList,
-    Container,
-    Markdown,
-    MarkdownCard,
-    StatefulCard,
-    TestCard,
-}
+export { default as Card } from './Card'
+export { default as CardList } from './CardList'
+export { default as Container } from './Container'
+export { default as MarkdownCard, Markdown } from './MarkdownCard'
+export { default as StatefulCard } from './StatefulCard'
+export { default as TestCard } from './TestCard'
