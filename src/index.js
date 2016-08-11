@@ -62,6 +62,7 @@ export default function(namespace = 'default') {
 }
 
 export {
+  ReactCards,
   resolveTests,
   run,
 }
