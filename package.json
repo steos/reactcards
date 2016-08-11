@@ -12,7 +12,8 @@
     "build:client": "webpack --config webpack.production.config",
     "build:server": "babel --presets es2015,stage-2,react src/server/ -d dist",
     "build": "npm run build:client && npm run build:server",
-    "test": "mocha -w test/setup.js test/*test.js",
+    "test": "mocha test/setup.js test/*test.js",
+    "test:watch": "npm run test -- -w",
     "test:coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -w test/setup.js -- test/*.test.js",
     "prepublish": "npm run build"
   },

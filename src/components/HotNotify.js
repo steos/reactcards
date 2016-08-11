@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import style from './style'
+import style from './style.less'
 
 export default class HotNotify extends Component {
   constructor(props) {
