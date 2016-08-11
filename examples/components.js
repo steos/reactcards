@@ -1,18 +1,6 @@
 import React, {Component} from 'react'
 
 export class Foo extends Component {
-  componentWillReceiveProps(nextProps) {
-    console.log('Foo receiving props', nextProps, this.props)
-  }
-  componentWillUnmount() {
-    console.log('Foo unmounting')
-  }
-  componentDidMount() {
-    console.log('Foo did mount')
-  }
-  componentDidUpdate() {
-    console.log('Foo updated!')
-  }
   render() {
     return <div className='foo'>Foo says '{this.props.message}.'</div>
   }
