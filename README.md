@@ -1,5 +1,7 @@
 # React Cards
 
+[![Build Status](https://travis-ci.org/steos/reactcards.svg?branch=master)](https://travis-ci.org/steos/reactcards)
+
 React Cards is inspired by Bruce Hauman's excellent [devcards](https://github.com/bhauman/devcards) project which aims to provide ClojureScript developers with a visual REPL-like experience especially suited for UI development.
 
 ### Getting Started
