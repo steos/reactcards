@@ -1,4 +1,4 @@
-import { run } from '../src'
+import { run } from '../dist/client.bundle'
 import './cards'
 
 if (module.hot) {

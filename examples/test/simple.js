@@ -1,4 +1,4 @@
-import {assert} from 'chai'
+import { assert } from 'chai'
 
 export function testAdd() {
   assert.equal(1 + 1, 2)
