@@ -1,5 +1,5 @@
 import React from 'react'
-import cards from '../src'
+import cards from '../dist/client.bundle'
 import {Foo, Bar, StatefulCounter, StatelessCounter, TodoList} from './components'
 import * as testSimple from './test/simple'
 import * as testComponents from './test/components'
