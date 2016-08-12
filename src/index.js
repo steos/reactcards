@@ -14,7 +14,7 @@ const main = (namespaces, history) => {
 const ReactCards = ({ history }) => (
   <div>
     { main(store.get(), history) }
-    <HotNotify/>
+    <HotNotify />
   </div>
 )
 
