@@ -1,5 +1,7 @@
 #Writing Cards
 
+#### Basic Example
+
 ```javascript
 import React from 'react'
 import cards from 'reactcards'
@@ -21,7 +23,7 @@ demo.card(<Bar/>, {title: 'a bar card'})
 
 ```
 
-![card](assets/images/component.png)
+![card](/assets/images/component.png)
 
 #### Creating a Stateful Component
 
@@ -47,7 +49,7 @@ demo.card(
 
 ```
 
-![card with stateful component](assets/images/component_state.png)
+![card with stateful component](/assets/images/component_state.png)
 
 #### Displaying a Component With Undo/Redo
 
@@ -76,7 +78,7 @@ demo.card(
 
 ```
 
-![card with stateful component and undo/redo](assets/images/component_state_undo_redo.png)
+![card with stateful component and undo/redo](/assets/images/component_state_undo_redo.png)
 
 
 ## Writing Tests
@@ -108,4 +110,4 @@ demo.test(someTests, {title:'simple tests'})
 You can write tests in a separate folder or write them directly inside a card. The first enables us to reuse the test
 in a different setting. More information regarding testing very soon.
 
-![test card](assets/images/component_test.png)
+![test card](/assets/images/component_test.png)
