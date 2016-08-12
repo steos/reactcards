@@ -53,6 +53,22 @@ React Cards will be available at http://localhost:8080
 
 Also see the [create-react-app example project](https://github.com/steos/reactcards-example/tree/master/create-react-app-example)
 
+
+## Example
+
+For quickly testing React Cards run the following command
+
+```javascript
+npm run example
+```
+
+The example includes 2 namespaces and features a number of markdown, tests and component cards.
+With react cards you can run the tests you have written for a card independent of react cards, run the following command.
+ 
+```javascript
+npm run example:test
+```
+
 ## Writing Cards
 
 Quick example. For a more detailed guide read the [Writing Cards](/docs/WritingCards.md) section.
@@ -90,6 +106,11 @@ Coming soon.
 * [API](/docs/API.md)
 * [NamespaceCard](/docs/NamespaceCard.md)
 * [Writing Cards](/docs/WritingCards.md)
+
+## Examples
+
+* [create-react-app example project](https://github.com/steos/reactcards-example/tree/master/create-react-app-example)
+
 
 ## License
 
