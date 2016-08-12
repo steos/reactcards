@@ -14,12 +14,11 @@ import packageConfiguration from '../package.json'
 import webpackConfiguration from './webpack.config'
 
 const app = express()
-const CONFIG_FILE_NAME = 'config.js'
 
 const createConfiguration = (config, entryFile, customWebpackConfig) => {
 
     if (!fs.existsSync(entryFile)) {
-        throw new Error(`${CONFIG_FILE_NAME} file "${entryFile}" missing.\n`)
+        throw new Error(`React Cards entry file "${entryFile}" missing.\n`)
     }
 
     // add the applications entry file to the webpack configuration
