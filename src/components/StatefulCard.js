@@ -47,10 +47,22 @@ export default class StatefulCard extends Component {
   }
   render() {
     const {title, doc} = this.props
+    
+    let children
+    try {
+      children = this.props.children(this.control)
+    } catch(err) {
+      /* 
+         Can't `throw new Error()`, It's swallowed by something
+         This is at least informative
+      */
+      console.error(err) 
+    }
+    
     return (
       <Card {...{title, doc}}>
       {this.props.history ? this.renderHistoryControl() : null}
-      {this.props.children(this.control)}
+      {children}
       {this.props.inspect ? this.renderInspect() : null}
       </Card>
     )
