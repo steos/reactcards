@@ -1,6 +1,6 @@
 // taken from https://github.com/lelandrichardson/enzyme-example-mocha/blob/master/test/.setup.js
 
-require('babel-register')();
+require('babel-core/register')();
 
 var jsdom = require('jsdom').jsdom;
 
