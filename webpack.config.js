@@ -11,7 +11,10 @@ module.exports = {
         filename: "app.js",
         path: path.join(__dirname, "public")
     },
-
+    externals: {
+      "react": "react",
+      "react-dom": "react-dom"
+    },
     module: {
         loaders: [
             {
