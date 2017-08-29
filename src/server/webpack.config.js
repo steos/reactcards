@@ -16,7 +16,6 @@ module.exports = {
         publicPath: '/public'
     },
     plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ],
 
