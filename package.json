@@ -49,7 +49,7 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "lodash": "^4.12.0",
-    "mocha": "^2.4.5",
+    "mocha": "^3.5.0",
     "myro": "^0.6.2",
     "postcss-loader": "^0.9.1",
     "react-hot-loader": "^3.0.0-alpha.8",
