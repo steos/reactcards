@@ -89,14 +89,15 @@ var createConfiguration = function createConfiguration(config, entryFile, custom
 };
 
 // cli arguments
-_commander2.default.version(_package2.default.version).usage('[options]').option('-p, --port <number>', 'Port to run React Cards', parseInt).option('-e, --entry <file>', 'Entry point for React Cards').option('-c, --conf <file>', 'Custom Webpack config file').parse(process.argv);
+_commander2.default.version(_package2.default.version).usage('[options]').option('-p, --port <number>', 'Port to run React Cards', parseInt).option('-e, --entry <file>', 'Entry point for React Cards').option('-c, --conf <file>', 'Custom Webpack config file').option('--poll', 'Poll files while watching').parse(process.argv);
 
 // settings
 var _program$port = _commander2.default.port,
     port = _program$port === undefined ? 8080 : _program$port,
     _program$entry = _commander2.default.entry,
     entry = _program$entry === undefined ? './reactcards.js' : _program$entry,
-    conf = _commander2.default.conf;
+    conf = _commander2.default.conf,
+    poll = _commander2.default.poll;
 
 
 if (!port) {
@@ -112,6 +113,13 @@ var options = {
     port: port,
     publicPath: config.output.publicPath
 };
+
+if (poll) {
+    options.watchOptions = {
+        aggregateTimeout: 300,
+        poll: true
+    };
+}
 
 app.use((0, _webpackDevMiddleware2.default)(compiler, options));
 app.use((0, _webpackHotMiddleware2.default)(compiler));
