@@ -35,15 +35,23 @@ const processArgs = args => {
   }
 }
 
+const makeCardName = (namespace, opts) => {
+    //TODO: Make this better
+    return namespace + "__" + opts.doc.split('\n')[0];
+}
+
 export default function(namespace = 'default') {
   const cards = []
   let nextId = 1
-  store.set(namespace, cards)
   return {
     card(...args) {
       const [content, opts] = processArgs(args)
       const CardImpl = typeof content === 'function' ? StatefulCard : Card
-      cards.push(<CardImpl {...opts} key={nextId++}>{content}</CardImpl>)
+      const card = <CardImpl {...opts} key={nextId++}>{content}</CardImpl>
+      const cardName = makeCardName(namespace, opts)
+      //TODO: Do we need to push the card to the cards list?
+      cards.push(card)
+      store.set(cardName, [card])
     },
     list() {
       return cards
@@ -53,10 +61,17 @@ export default function(namespace = 'default') {
     },
     test(...args) {
       const [content, opts] = processArgs(args)
-      cards.push(<TestCard {...opts} key={nextId++} testModule={content}/>)
+      const card = <TestCard {...opts} key={nextId++} testModule={content}/>
+      const cardName = makeCardName(namespace, opts)
+      cards.push(card)
+      store.set(cardName, [card])
     },
     markdown(text) {
-      cards.push(<MarkdownCard key={nextId++}>{text}</MarkdownCard>)
+      //TODO: UNTESTED!
+      const cardName = makeCardName(namespace, text)
+      const card = <MarkdownCard key={nextId++}>{text}</MarkdownCard>
+      cards.push(card)
+      store.set(cardName, [card])
     }
   }
 }
