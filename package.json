@@ -52,6 +52,7 @@
     "mocha": "^3.5.0",
     "myro": "^0.6.2",
     "postcss-loader": "^0.9.1",
+    "qs": "^6.5",
     "react-hot-loader": "^3.0.0-alpha.8",
     "showdown": "^1.3.0",
     "sinon": "^1.17.4",

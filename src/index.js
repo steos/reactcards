@@ -3,6 +3,7 @@ import { Card, CardList, MarkdownCard, TestCard, StatefulCard, Container, HotNot
 import namespaceStore from './namespaceStore'
 import mount from './mount'
 import resolveTests from './utils/resolveTests'
+import { parse } from 'qs'
 
 let store = namespaceStore()
 
@@ -43,15 +44,21 @@ const makeCardName = (namespace, opts) => {
 export default function(namespace = 'default') {
   const cards = []
   let nextId = 1
+  let q = parse(window.location.search, { ignoreQueryPrefix: true });
+  let flat = q.flat === "true" || q.flat === "1";
+  if (!flat) {
+    store.set(namespace, cards)
+  }
   return {
     card(...args) {
       const [content, opts] = processArgs(args)
       const CardImpl = typeof content === 'function' ? StatefulCard : Card
       const card = <CardImpl {...opts} key={nextId++}>{content}</CardImpl>
-      const cardName = makeCardName(namespace, opts)
-      //TODO: Do we need to push the card to the cards list?
-      cards.push(card)
-      store.set(cardName, [card])
+      cards.push(card);
+      if (flat) {
+          const cardName = makeCardName(namespace, opts)
+          store.set(cardName, [card])
+      }
     },
     list() {
       return cards
@@ -62,16 +69,20 @@ export default function(namespace = 'default') {
     test(...args) {
       const [content, opts] = processArgs(args)
       const card = <TestCard {...opts} key={nextId++} testModule={content}/>
-      const cardName = makeCardName(namespace, opts)
       cards.push(card)
-      store.set(cardName, [card])
+      if (flat) {
+          const cardName = makeCardName(namespace, opts)
+          store.set(cardName, [card])
+      }
     },
     markdown(text) {
       //TODO: UNTESTED!
-      const cardName = makeCardName(namespace, text)
       const card = <MarkdownCard key={nextId++}>{text}</MarkdownCard>
       cards.push(card)
-      store.set(cardName, [card])
+      if (flat) {
+          const cardName = makeCardName(namespace, text)
+          store.set(cardName, [card])
+      }
     }
   }
 }
