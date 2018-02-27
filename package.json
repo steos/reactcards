@@ -1,6 +1,6 @@
 {
   "name": "reactcards",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "devcards for react",
   "license": "BSD-3-Clause",
   "main": "dist/client.bundle.js",
