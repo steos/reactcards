@@ -1482,8 +1482,10 @@ var processArgs = function processArgs(args) {
 };
 
 var makeCardName = function makeCardName(namespace, opts) {
-  //TODO: Make this better
-  return namespace + "__" + opts.doc.split('\n')[0];
+  var origCardName = opts.doc.split('\n')[0].trim();
+  origCardName = origCardName.replace(/^#+/g, '').trim();
+  //Note that spaces do not work in all browsers, so replace them with underscores
+  return (namespace + "__" + origCardName).split(' ').join('_');
 };
 
 var _default = function _default() {
