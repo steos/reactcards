@@ -3,6 +3,7 @@ import { Card, CardList, MarkdownCard, TestCard, StatefulCard, Container, HotNot
 import namespaceStore from './namespaceStore'
 import mount from './mount'
 import resolveTests from './utils/resolveTests'
+import { parse } from 'qs'
 
 let store = namespaceStore()
 
@@ -35,15 +36,31 @@ const processArgs = args => {
   }
 }
 
+const makeCardName = (namespace, opts) => {
+    let origCardName = opts.doc.split('\n')[0].trim();
+    origCardName = origCardName.replace(/^#+/g,'').trim();
+    //Note that spaces do not work in all browsers, so replace them with underscores
+    return (namespace + "__" + origCardName).split(' ').join('_');
+}
+
 export default function(namespace = 'default') {
   const cards = []
   let nextId = 1
-  store.set(namespace, cards)
+  let q = parse(window.location.search, { ignoreQueryPrefix: true });
+  let flat = q.flat === "true" || q.flat === "1";
+  if (!flat) {
+    store.set(namespace, cards)
+  }
   return {
     card(...args) {
       const [content, opts] = processArgs(args)
       const CardImpl = typeof content === 'function' ? StatefulCard : Card
-      cards.push(<CardImpl {...opts} key={nextId++}>{content}</CardImpl>)
+      const card = <CardImpl {...opts} key={nextId++}>{content}</CardImpl>
+      cards.push(card);
+      if (flat) {
+          const cardName = makeCardName(namespace, opts)
+          store.set(cardName, [card])
+      }
     },
     list() {
       return cards
@@ -53,10 +70,21 @@ export default function(namespace = 'default') {
     },
     test(...args) {
       const [content, opts] = processArgs(args)
-      cards.push(<TestCard {...opts} key={nextId++} testModule={content}/>)
+      const card = <TestCard {...opts} key={nextId++} testModule={content}/>
+      cards.push(card)
+      if (flat) {
+          const cardName = makeCardName(namespace, opts)
+          store.set(cardName, [card])
+      }
     },
     markdown(text) {
-      cards.push(<MarkdownCard key={nextId++}>{text}</MarkdownCard>)
+      //TODO: UNTESTED!
+      const card = <MarkdownCard key={nextId++}>{text}</MarkdownCard>
+      cards.push(card)
+      if (flat) {
+          const cardName = makeCardName(namespace, text)
+          store.set(cardName, [card])
+      }
     }
   }
 }
