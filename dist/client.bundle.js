@@ -1485,7 +1485,9 @@ var makeCardName = function makeCardName(namespace, opts) {
   var origCardName = opts.doc.split('\n')[0].trim();
   origCardName = origCardName.replace(/^#+/g, '').trim();
   //Note that spaces do not work in all browsers, so replace them with underscores
-  return (namespace + "__" + origCardName).split(' ').join('_');
+  var cardName = (namespace + '__' + origCardName).split(' ').join('_');
+  cardName = cardName.split('(').join('').split(')').join('');
+  return cardName;
 };
 
 var _default = function _default() {
