@@ -1487,6 +1487,7 @@ var makeCardName = function makeCardName(namespace, opts) {
   //Note that spaces do not work in all browsers, so replace them with underscores
   var cardName = (namespace + '__' + origCardName).split(' ').join('_');
   cardName = cardName.split('(').join('').split(')').join('');
+  cardName = cardName.split('&').join('and');
   return cardName;
 };
 
