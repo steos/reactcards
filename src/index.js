@@ -41,9 +41,13 @@ const makeCardName = (namespace, opts) => {
     origCardName = origCardName.replace(/^#+/g,'').trim();
     //Note that spaces do not work in all browsers, so replace them with underscores
     let cardName = (namespace + '__' + origCardName).split(' ').join('_');
+    //make a few substitutions that let cards keep more meaning before
+    //stripping out all non-alpha numeric chars
     cardName = cardName.replace(/&lt;/g, "lt").replace(/&gt;/g, "gt");
-    cardName = cardName.split('(').join('').split(')').join('');
     cardName = cardName.split('&').join('and');
+    cardName = cardName.split('=>').join('to');
+    cardName = cardName.split('-').join('');
+    cardName = cardName.replace(/[\W]+/g,"");
     return cardName;
 }
 
