@@ -400,12 +400,16 @@ var Card = function Card(props) {
   var q = (0, _qs.parse)(window.location.search, { ignoreQueryPrefix: true });
   var flat = q.flat === "true" || q.flat === "1";
   var flatStyle = '';
+  var id = null;
   if (flat) {
     flatStyle = 'flat ';
+    if (props.title || props.doc) {
+      id = 'card';
+    }
   }
   return _react2.default.createElement(
     'div',
-    { className: "reactcards-card " + flatStyle + _style2.default.card },
+    { id: id, className: "reactcards-card " + flatStyle + _style2.default.card },
     props.title ? _react2.default.createElement(
       CardHeader,
       null,
