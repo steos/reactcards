@@ -57,10 +57,11 @@ program
     .option('-p, --port <number>', 'Port to run React Cards', parseInt)
     .option('-e, --entry <file>', 'Entry point for React Cards')
     .option('-c, --conf <file>', 'Custom Webpack config file')
+    .option('--poll', 'Poll files while watching')
     .parse(process.argv)
 
 // settings
-const { port = 8080, entry = './reactcards.js', conf} = program
+const { port = 8080, entry = './reactcards.js', conf, poll} = program
 
 if (!port) {
     console.info(`No port defined. React Cards will run at port ${port}.\n`)
@@ -74,6 +75,13 @@ const options = {
     noInfo: true,
     port,
     publicPath: config.output.publicPath,
+}
+
+if (poll) {
+  options.watchOptions = {
+    aggregateTimeout: 300,
+    poll: true
+  }
 }
 
 app.use(webpackDevMiddleware(compiler, options))
